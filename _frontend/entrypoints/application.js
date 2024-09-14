@@ -1,21 +1,38 @@
 import Alpine from "alpinejs";
+import { Octokit } from "octokit";
 import "./components/auth_page";
 
 window.auth = {
-  user: JSON.parse(localStorage["user"] ?? "null"),
-
-  login(user) {
-    console.log("login", user);
-    localStorage["user"] = JSON.stringify(user);
+  set(auth) {
+    localStorage["auth"] = JSON.stringify(auth);
   },
 
-  logout() {
-    console.log("logout");
-    delete localStorage["user"];
+  get() {
+    return JSON.parse(localStorage["auth"] ?? "null");
+  },
+
+  clear() {
+    delete localStorage["auth"];
+  },
+
+  oktokit() {
+    return new Octokit({
+      auth: this.get().access_token,
+    });
   },
 
   check() {
-    return Boolean(this.user);
+    return Boolean(this.get());
+  },
+
+  authUrl() {
+    const params = new URLSearchParams({
+      client_id: import.meta.env.VITE_GITHUB_APP_CLIENT_ID,
+      scope: import.meta.env.VITE_GITHUB_AUTH_SCOPE,
+      redirect_uri: import.meta.env.VITE_AUTH_CALLBACK_URL,
+    });
+
+    return `${import.meta.env.VITE_GITHUB_SITE_URL}/login/oauth/authorize?${params}`;
   },
 };
 

@@ -1,6 +1,19 @@
 export async function onRequest({ request, env }) {
   const code = new URL(request.url).searchParams.get("code");
 
+  if (!code) {
+    const params = new URLSearchParams({
+      client_id: env.GITHUB_APP_CLIENT_ID,
+      scope: env.GITHUB_AUTH_SCOPE,
+      redirect_uri: env.REDIRECT_URI,
+    });
+
+    return Response.redirect(
+      `${env.GITHUB_SITE_URL}/login/oauth/authorize?${params}`,
+      301,
+    );
+  }
+
   try {
     const params = new URLSearchParams({
       client_id: env.GITHUB_APP_CLIENT_ID,
