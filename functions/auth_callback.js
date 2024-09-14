@@ -1,7 +1,7 @@
 export async function onRequest(context) {
   // console.log(context);
 
-  // const code = new URL(context.request.url).get("code");
+  const code = new URL(context.request.url).get("code");
 
   // const response = await fetch(
   //   `${env.GITHUB_SITE_URL}/login/oauth/access_token`,
@@ -20,5 +20,5 @@ export async function onRequest(context) {
   // );
 
   // return Response.json(await response.json());
-  return Response.json({ hello: "world" });
+  return Response.json({ hello: code });
 }
