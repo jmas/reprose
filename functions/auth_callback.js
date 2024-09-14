@@ -1,4 +1,4 @@
-export function onRequest(context) {
+export async function onRequest(context) {
   // console.log(context);
 
   // const code = new URL(context.request.url).get("code");
