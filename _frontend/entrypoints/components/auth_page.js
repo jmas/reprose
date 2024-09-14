@@ -10,9 +10,9 @@ window.auth_page = () => {
 
     authUrl() {
       const params = new URLSearchParams({
-        client_id: import.meta.env.VITE_GITHUB_AUTH_CLIENT_ID,
+        client_id: import.meta.env.VITE_GITHUB_APP_CLIENT_ID,
         scope: import.meta.env.VITE_GITHUB_AUTH_SCOPE,
-        redirect_uri: window.location.href,
+        redirect_uri: import.meta.env.VITE_AUTH_CALLBACK_URL,
       });
 
       //
