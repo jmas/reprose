@@ -1,5 +1,5 @@
 export async function onRequest({ request }) {
-  const code = request.url.get("code");
+  const code = new URL(request.url).get("code");
 
   const response = await fetch(
     `${env.GITHUB_SITE_URL}/login/oauth/access_token`,
