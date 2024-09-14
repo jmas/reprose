@@ -1,7 +1,7 @@
 export async function onRequest(context) {
   // console.log(context);
 
-  const code = context.request.url;
+  const code = new URL(context.request.url).searchParams.get("code");
 
   // const response = await fetch(
   //   `${env.GITHUB_SITE_URL}/login/oauth/access_token`,
