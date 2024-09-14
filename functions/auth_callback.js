@@ -1,21 +1,24 @@
-export async function onRequest({ request }) {
-  const code = new URL(request.url).get("code");
+export function onRequest(context) {
+  // console.log(context);
 
-  const response = await fetch(
-    `${env.GITHUB_SITE_URL}/login/oauth/access_token`,
-    {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-      },
-      body: JSON.stringify({
-        client_id: env.GITHUB_APP_CLIENT_ID,
-        client_secret: env.GITHUB_APP_CLIENT_SECRET,
-        redirect_uri: env.REDIRECT_URI,
-        code,
-      }),
-    },
-  );
+  // const code = new URL(context.request.url).get("code");
 
-  return Response.json(await response.json());
+  // const response = await fetch(
+  //   `${env.GITHUB_SITE_URL}/login/oauth/access_token`,
+  //   {
+  //     method: "POST",
+  //     headers: {
+  //       accept: "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       client_id: env.GITHUB_APP_CLIENT_ID,
+  //       client_secret: env.GITHUB_APP_CLIENT_SECRET,
+  //       redirect_uri: env.REDIRECT_URI,
+  //       code,
+  //     }),
+  //   },
+  // );
+
+  // return Response.json(await response.json());
+  return Response.json({ hello: "world" });
 }
