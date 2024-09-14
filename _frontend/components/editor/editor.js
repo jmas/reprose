@@ -3,6 +3,7 @@ import auth from "../../utils/auth";
 import { decode, encode } from "js-base64";
 import fm from "front-matter";
 import { stringify } from "yaml";
+import { Alpine } from "alpinejs";
 
 window.editor = () => ({
   editor: null,
@@ -22,13 +23,17 @@ window.editor = () => ({
 
     this.path = this.getPathFromLocation();
 
+    await this.load();
+
     this.editor = new EasyMDE({
       element: this.$refs.input,
       spellChecker: false,
+      initialValue: Alpine.raw(this.body),
     });
+  },
 
-    await this.load();
-    await this.update();
+  destroy() {
+    this.editor.toTextArea();
   },
 
   getPathFromLocation() {
@@ -75,10 +80,6 @@ window.editor = () => ({
     };
     this.body = body;
     this.sha = sha;
-  },
-
-  async update() {
-    this.editor.value(this.body);
   },
 
   async save() {
