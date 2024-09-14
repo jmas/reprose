@@ -9,10 +9,10 @@
 
     <div class="w-1/4 flex flex-row items-center justify-end">
         <template x-if="!auth.check()">
-            <button x-on:click="login()">Login</button>
+            <button x-on:click="login()" class="text-lg p-2">Login</button>
         </template>
         <template x-if="auth.check()">
-            <button x-on:click="logout()">Logout</button>
+            <button x-on:click="logout()" class="text-lg p-2">Logout</button>
         </template>
     </div>
 </div>
