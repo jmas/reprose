@@ -1,23 +1,15 @@
-console.log(import.meta.env);
+import auth from "../utils/auth";
 
-window.auth_page = () => {
+window.repos = () => {
   return {
-    logged: false,
+    items: [],
 
-    init() {
-      this.logged = auth.check();
+    async init() {
+      this.items = await this.list();
     },
 
-    authUrl() {
-      const params = new URLSearchParams({
-        client_id: import.meta.env.VITE_GITHUB_APP_CLIENT_ID,
-        scope: import.meta.env.VITE_GITHUB_AUTH_SCOPE,
-        redirect_uri: import.meta.env.VITE_AUTH_CALLBACK_URL,
-      });
-
-      //
-
-      return `${import.meta.env.VITE_GITHUB_SITE_URL}/login/oauth/authorize?${params}`;
+    async list() {
+      return await auth.oktokit().request("GET /user/repos");
     },
   };
 };

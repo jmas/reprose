@@ -8,4 +8,10 @@ layout: default
 
 <template x-if="auth.check()">
     <div><button x-on:click="auth.clear()">Logout</button></div>
+
+    <ul x-data="repos">
+        <template x-for="item in items">
+            <li x-text="item.name"></li>
+        </template>
+    </ul>
 </template>
