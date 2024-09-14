@@ -35,7 +35,7 @@ export async function onRequest({ request, env }) {
     const data = await response.json();
 
     return new Response(
-      `<script>localStorage['auth'] = JSON.parse('${JSON.stringify(data)}'); location.href = '${env.HOME_URL}';</script>`,
+      `<script>localStorage['auth'] = '${JSON.stringify(data)}'; location.href = '${env.HOME_URL}';</script>`,
       {
         headers: {
           "content-type": "text/html;charset=UTF-8",
