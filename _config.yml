@@ -20,8 +20,8 @@
 
 title: Reprose
 author:
-  name: John Smith
-  email: "john.smith@foobar.com"
+  name: Maslakov Oleksandr
+  email: "jmas.ukraine@gmail.com"
 description: >- # this means to ignore newlines until "baseurl:"
   Reprose is Markdown edior for Github mainly aim to edit
   blog posts or documentation pages in Github
@@ -29,6 +29,9 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: reprose
 github_username: reprose
+
+sass:
+  quiet_deps: true
 
 # Build settings
 theme: minima
