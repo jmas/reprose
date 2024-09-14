@@ -2,16 +2,59 @@
 layout: default
 ---
 
-<template x-if="!auth.check()">
-    <div><a href="/auth">Login</a></div>
-</template>
+<div x-data class="flex flex-col gap-4">
+    <template x-if="auth.check()">
+        <div class="flex flex-col gap-4">
+            <div
+                x-data="finder"
+                data-finder-url="/editor"
+                class="flex flex-col gap-4"
+            >
+                <template x-if="path.length > 0">
+                    <ul
+                        class="bg-white p-4 rounded-md text-lg flex flex-row gap-4"
+                    >
+                        <template x-for="item in path">
+                            <li
+                                class="min-w-0 flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
+                            >
+                                <button
+                                    x-text="item.name"
+                                    class="text-nowrap truncate"
+                                ></button>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
 
-<template x-if="auth.check()">
-    <div><button x-on:click="auth.clear()">Logout</button></div>
+                <input
+                    type="search"
+                    x-model="search"
+                    class="p-4 text-lg rounded-md"
+                    placeholder="Search&hellip;"
+                />
 
-    <ul x-data="repos">
-        <template x-for="item in items">
-            <li x-text="item.name"></li>
-        </template>
-    </ul>
-</template>
+                <ul class="flex flex-col gap-4">
+                    <template x-if="loading">
+                        <li class="text-center p-4">Loading&hellip;</li>
+                    </template>
+                    <template x-for="item in _items">
+                        <li class="flex flex-row">
+                            <button
+                                class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center"
+                                x-on:click="select(item)"
+                            >
+                                <span x-html="item.icon"></span>
+                                <span
+                                    x-text="item.name"
+                                    class="flex-1 text-nowrap truncate"
+                                ></span>
+                                <span x-html="icons.chevron"></span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </template>
+</div>

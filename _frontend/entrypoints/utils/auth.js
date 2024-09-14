@@ -22,4 +22,8 @@ export default {
   check() {
     return Boolean(this.get());
   },
+
+  async user() {
+    return (await this.oktokit().request("GET /user")).data;
+  },
 };

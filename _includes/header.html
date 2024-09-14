@@ -1,0 +1,18 @@
+<div class="bg-white p-4 flex flex-row" x-data="header">
+    <div class="w-1/4 flex flex-row items-center"></div>
+
+    <div
+        class="flex-1 text-lg font-medium flex flex-row justify-center items-center"
+    >
+        Reprose
+    </div>
+
+    <div class="w-1/4 flex flex-row items-center justify-end">
+        <template x-if="!auth.check()">
+            <button x-on:click="login()">Login</button>
+        </template>
+        <template x-if="auth.check()">
+            <button x-on:click="logout()">Logout</button>
+        </template>
+    </div>
+</div>
