@@ -1,5 +1,5 @@
-export async function onRequest(context) {
-  const code = new URL(context.request.url).searchParams.get("code");
+export async function onRequest({ request, env }) {
+  const code = new URL(request.url).searchParams.get("code");
 
   try {
     const response = await fetch(
