@@ -2,4 +2,10 @@
 layout: default
 ---
 
-If auth go to finder
+<template x-if="!auth.check()">
+    <div><a href="/auth">Login</a></div>
+</template>
+
+<template x-if="auth.check()">
+    <div><button x-on:click="auth.clear()">Logout</button></div>
+</template>
