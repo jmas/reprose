@@ -2,4 +2,49 @@
 layout: default
 ---
 
-<div class="container">Editor</div>
+<form x-data="editor" class="flex flex-col gap-4" x-on:submit.prevent="save">
+    <div class="flex flex-row gap-4">
+        <input
+            type="text"
+            class="flex-1 py-3 px-4 text-2xl font-medium rounded-md border-2"
+            placeholder="Title"
+            x-model="attributes.title"
+        />
+
+        <button
+            type="button"
+            class="editor-settings"
+            x-html="icons.gear"
+            x-on:click="toggleSettings"
+        ></button>
+
+        <button
+            class="editor-submit"
+            x-html="saving ? icons.spinner : 'Save'"
+        ></button>
+    </div>
+
+    <ul x-show="settingsDisplayed">
+        <template x-for="(value, key) in attributes">
+            <template x-if="key !== 'title'">
+                <li class="flex flex-row gap-4 items-start">
+                    <input
+                        type="text"
+                        name="attributes[key][]"
+                        x-bind:value="key"
+                        class="flex-1 py-3 px-4 text-lg font-medium rounded-md border-2"
+                        readonly
+                    />
+                    <textarea
+                        type="text"
+                        name="attributes[value][]"
+                        x-text="value"
+                        class="flex-1 py-3 px-4 min-h-32 text-lg font-medium rounded-md border-2"
+                    ></textarea>
+                </li>
+            </template>
+        </template>
+    </ul>
+
+    <textarea x-ref="input"></textarea>
+</form>

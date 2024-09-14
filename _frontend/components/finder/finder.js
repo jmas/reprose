@@ -1,16 +1,16 @@
-import auth from "../utils/auth";
-import icons from "../utils/icons";
+import auth from "../../utils/auth";
+import icons from "../../utils/icons";
 
 window.finder = () => {
   return {
     items: [],
     path: [],
     search: "",
-    username: null,
-    loading: false,
+    owner: null,
+    loading: true,
 
     async init() {
-      await this.fetchUsername();
+      this.owner = await auth.username();
       await this.update();
     },
 
@@ -29,14 +29,11 @@ window.finder = () => {
         .join("/");
     },
 
-    async fetchUsername() {
-      this.username = (await auth.user()).login;
-    },
-
     async fetchRepos() {
       return (
         await auth.oktokit().request("GET /user/repos", {
           per_page: 100,
+          type: "owner",
         })
       ).data.map(({ name }) => ({
         type: "repo",
@@ -48,7 +45,7 @@ window.finder = () => {
     async fetchDir() {
       const repo = this.getRepo();
       const path = this.getPathWithoutRepo();
-      const url = `GET /repos/${this.username}/${repo}/contents/${path}`;
+      const url = `GET /repos/${this.owner}/${repo}/contents/${path}`;
 
       return (
         await auth.oktokit().request(url, {
@@ -104,6 +101,11 @@ window.finder = () => {
         });
         window.location.href = `${this.$root.getAttribute("data-finder-url")}?${params}`;
       }
+    },
+
+    async navigate(path) {
+      this.path = path;
+      await this.update();
     },
   };
 };

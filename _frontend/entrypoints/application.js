@@ -1,8 +1,9 @@
 import Alpine from "alpinejs";
-import "./components/header";
-import "./components/finder";
-import auth from "./utils/auth";
-import icons from "./utils/icons";
+import "../components/header/header";
+import "../components/finder/finder";
+import "../components/editor/editor";
+import auth from "../utils/auth";
+import icons from "../utils/icons";
 
 window.icons = icons;
 

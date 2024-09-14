@@ -1,0 +1,33 @@
+@import "easymde/dist/easymde.min.css";
+
+.EasyMDEContainer .editor-toolbar {
+    @apply border-0 bg-slate-50 rounded-none p-2 flex flex-row gap-1 items-center;
+}
+
+.EasyMDEContainer .editor-toolbar:not(.fullscreen) {
+    @apply sticky top-0 z-10;
+}
+
+.EasyMDEContainer .CodeMirror {
+    @apply rounded-md border-none text-lg p-4;
+}
+
+.EasyMDEContainer .editor-preview {
+    @apply bg-slate-50;
+}
+
+.EasyMDEContainer .cm-header {
+    @apply font-medium;
+}
+
+.EasyMDEContainer .cm-header.cm-header-1 {
+    @apply text-2xl;
+}
+
+.EasyMDEContainer .cm-header.cm-header-2 {
+    @apply text-xl;
+}
+
+.EasyMDEContainer .cm-header.cm-header-3 {
+    @apply text-lg;
+}

@@ -26,4 +26,8 @@ export default {
   async user() {
     return (await this.oktokit().request("GET /user")).data;
   },
+
+  async username() {
+    return (await this.user()).login;
+  },
 };

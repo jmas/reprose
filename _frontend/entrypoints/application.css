@@ -1,3 +1,8 @@
+@import "../vendors/easymode.css";
+@import "../components/editor/editor.css";
+@import "../components/finder/finder.css";
+@import "../components/header/header.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
