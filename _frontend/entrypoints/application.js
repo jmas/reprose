@@ -1,8 +1,27 @@
-// To see this message, follow the instructions for your Ruby framework.
-//
-// When using a plain API, perhaps it's better to generate an HTML entrypoint
-// and link to the scripts and stylesheets, and let Vite transform it.
-console.log('Vite ⚡️ Ruby')
+import Alpine from "alpinejs";
+import "./components/auth_page";
+
+window.auth = {
+  user: JSON.parse(localStorage["user"] ?? "null"),
+
+  login(user) {
+    console.log("login", user);
+    localStorage["user"] = JSON.stringify(user);
+  },
+
+  logout() {
+    console.log("logout");
+    delete localStorage["user"];
+  },
+
+  check() {
+    return Boolean(this.user);
+  },
+};
+
+window.Alpine = Alpine;
+
+Alpine.start();
 
 // Example: Import a stylesheet in <sourceCodeDir>/index.css
 // import '~/index.css'

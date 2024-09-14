@@ -7,5 +7,9 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-darwin-arm64": "^4.21.3"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.1",
+    "octokit": "^4.0.2"
   }
 }
