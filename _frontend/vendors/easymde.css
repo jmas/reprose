@@ -111,3 +111,13 @@
 .EasyMDEContainer .cm-s-easymde .cm-url {
     @apply text-blue-500;
 }
+
+.EasyMDEContainer .cm-s-easymde .cm-comment {
+    @apply bg-slate-100 py-1 font-mono;
+}
+
+.EasyMDEContainer
+    .cm-s-easymde
+    *:is(.cm-formatting-code-block, .cm-formatting-code) {
+    @apply bg-slate-200;
+}
