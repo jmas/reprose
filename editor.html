@@ -71,10 +71,13 @@ back: /finder
         ></button>
     </div>
 
-    <ul x-show="settingsDisplayed" class="w-full max-w-screen-lg p-6">
+    <ul
+        x-show="settingsDisplayed"
+        class="w-full max-w-screen-lg p-6 flex flex-col gap-4"
+    >
         <template x-for="(value, key) in attributes">
             <template x-if="key !== 'title'">
-                <li class="flex flex-row gap-4 items-start">
+                <li class="w-full flex flex-row gap-4 items-start">
                     <input
                         type="text"
                         name="attributes[key][]"
