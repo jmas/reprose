@@ -88,6 +88,22 @@
     @apply text-lg font-medium;
 }
 
+.EasyMDEContainer .editor-preview *:is(ul, ol) {
+    @apply pl-6 flex flex-col;
+}
+
+.EasyMDEContainer .editor-preview *:is(ul, ol) > * {
+    @apply w-full;
+}
+
+.EasyMDEContainer .editor-preview ul {
+    @apply list-disc;
+}
+
+.EasyMDEContainer .editor-preview ol {
+    @apply list-decimal;
+}
+
 .EasyMDEContainer .cm-s-easymde .cm-link {
     @apply text-blue-600;
 }
