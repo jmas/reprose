@@ -7,23 +7,27 @@ showAuthButtons: true
 
 <form x-data="editor" class="flex flex-col gap-4" x-on:submit.prevent="save">
     <div class="flex flex-row gap-4">
-        <input
-            type="text"
-            class="flex-1 py-3 px-4 text-2xl font-medium rounded-md border-2"
-            placeholder="Title"
-            x-model="attributes.title"
-        />
+        <div
+            class="w-full bg-white flex flex-row items-center rounded-md border-2"
+        >
+            <input
+                type="text"
+                class="flex-1 py-3 px-4 text-2xl font-medium rounded-md"
+                placeholder="Title"
+                x-model="attributes.title"
+            />
 
-        <button
-            type="button"
-            class="editor-settings"
-            x-html="icons.gear"
-            x-on:click="toggleSettings"
-        ></button>
+            <button
+                type="button"
+                class="editor-settings"
+                x-html="icons.gear"
+                x-on:click="toggleSettings"
+            ></button>
+        </div>
 
         <button
             class="editor-submit"
-            x-html="saving ? icons.spinner : 'Save'"
+            x-html="saving ? icons.spinner : icons.save"
         ></button>
     </div>
 

@@ -1,7 +1,7 @@
 .editor-submit {
-    @apply px-6 text-2xl font-medium rounded-md border-2 border-blue-500 text-blue-500;
+    @apply px-4 text-2xl font-medium rounded-md border-2 border-blue-500 text-blue-500;
 }
 
 .editor-settings {
-    @apply px-4 text-2xl font-medium rounded-md border-2;
+    @apply px-4 text-2xl font-medium rounded-md;
 }

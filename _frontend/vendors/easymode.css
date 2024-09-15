@@ -1,7 +1,11 @@
 @import "easymde/dist/easymde.min.css";
 
 .EasyMDEContainer .editor-toolbar {
-    @apply border-0 bg-slate-50 rounded-none p-2 flex flex-row gap-1 items-center;
+    @apply border-0 bg-slate-50 rounded-none p-2 flex flex-row gap-2 items-center text-lg;
+}
+
+.EasyMDEContainer .editor-toolbar button {
+    @apply block flex justify-center items-center min-h-8 min-w-8 p-0;
 }
 
 .EasyMDEContainer .editor-toolbar:not(.fullscreen) {
