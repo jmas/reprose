@@ -1,5 +1,4 @@
 import auth from "../../utils/auth";
-import icons from "../../utils/icons";
 import { get, put } from "../../utils/localstorage";
 
 window.finder = () => {
@@ -47,7 +46,6 @@ window.finder = () => {
         })
       ).data.map(({ name }) => ({
         type: "repo",
-        icon: icons.repo,
         name,
       }));
     },
@@ -69,7 +67,6 @@ window.finder = () => {
         )
         .map(({ name, type }) => ({
           type: type === "dir" ? "dir" : "doc",
-          icon: type === "dir" ? icons.dir : icons.doc,
           name,
         }))
         .sort(({ type }) => (type === "dir" ? -1 : type === "doc" ? 1 : 0));

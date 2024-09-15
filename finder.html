@@ -62,7 +62,9 @@ title: Select a file
                                 x-on:click="select(item)"
                                 title="Select"
                             >
-                                <span x-html="item.icon"></span>
+                                <span
+                                    x-html="item.type === 'repo' ? icons.repo : item.type === 'dir' ? icons.dir : icons.doc"
+                                ></span>
                                 <span
                                     x-text="item.name"
                                     class="flex-1 text-nowrap truncate"
