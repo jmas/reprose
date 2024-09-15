@@ -1,0 +1,66 @@
+---
+layout: default
+title: Select the file
+showAuthButtons: true
+---
+
+<div x-data class="flex flex-col gap-4">
+    <template x-if="auth.check()">
+        <div class="flex flex-col gap-4">
+            <div
+                x-data="finder"
+                data-finder-url="/editor"
+                class="flex flex-col gap-4"
+            >
+                <template x-if="path.length > 0">
+                    <ul
+                        class="bg-white p-4 rounded-md text-lg flex flex-row gap-4"
+                    >
+                        <template x-for="(item, index) in path">
+                            <li
+                                class="min-w-0 flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
+                            >
+                                <button
+                                    x-text="item.name"
+                                    class="text-nowrap truncate"
+                                    x-on:click="navigate(path.slice(0, index + 1))"
+                                ></button>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+
+                <input
+                    type="search"
+                    x-model="search"
+                    class="py-3 px-4 text-lg rounded-md border-2"
+                    placeholder="Search&hellip;"
+                />
+
+                <ul class="flex flex-col gap-4">
+                    <template x-if="loading">
+                        <li class="text-center p-4 text-lg">Loading&hellip;</li>
+                    </template>
+                    <template x-if="!loading && _items().length === 0">
+                        <li class="text-center p-4 text-lg">Empty</li>
+                    </template>
+                    <template x-for="item in _items">
+                        <li class="flex flex-row">
+                            <button
+                                class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center"
+                                x-on:click="select(item)"
+                            >
+                                <span x-html="item.icon"></span>
+                                <span
+                                    x-text="item.name"
+                                    class="flex-1 text-nowrap truncate"
+                                ></span>
+                                <span x-html="icons.chevron"></span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </template>
+</div>

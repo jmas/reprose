@@ -1,7 +1,8 @@
 import Alpine from "alpinejs";
-import "../components/header/header";
+import "../components/app/app";
 import "../components/finder/finder";
 import "../components/editor/editor";
+import "../components/home/home";
 import auth from "../utils/auth";
 import icons from "../utils/icons";
 

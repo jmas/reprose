@@ -1,18 +1,30 @@
-<div class="bg-white p-4 flex flex-row w-full" x-data="header">
-    <div class="w-1/4 flex flex-row items-center"></div>
+<div class="bg-white p-4 flex flex-row w-full">
+    <div class="w-1/4 flex flex-row items-center">
+        {% if page.back %}
+        <a href="{{ page.back }}" class="p-2" x-html="icons.prev"></a>
+        {% endif %}
+    </div>
 
     <div
-        class="flex-1 text-lg font-medium flex flex-row justify-center items-center"
+        class="flex-1 text-lg font-medium flex flex-row justify-center items-center truncate p-2"
     >
-        Reprose
+        {{ page.title }}
     </div>
 
     <div class="w-1/4 flex flex-row items-center justify-end">
+        {% if showAuthButtons %}
         <template x-if="!auth.check()">
-            <button x-on:click="login()" class="text-lg p-2">Login</button>
+            <button x-on:click="login()" class="text-lg p-2">
+                Login
+                <span x-html="icons.next"></span>
+            </button>
         </template>
         <template x-if="auth.check()">
-            <button x-on:click="logout()" class="text-lg p-2">Logout</button>
+            <button x-on:click="logout()" class="text-lg p-2">
+                Logout
+                <span x-html="icons.next"></span>
+            </button>
         </template>
+        {% endif %}
     </div>
 </div>

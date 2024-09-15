@@ -1,6 +1,12 @@
 import auth from "../../utils/auth";
 
-window.header = () => ({
+window.home = () => ({
+  init() {
+    if (auth.check()) {
+      window.location.href = "/finder";
+    }
+  },
+
   login() {
     window.location.href = "/auth";
   },
