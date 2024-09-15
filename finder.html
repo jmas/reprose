@@ -11,31 +11,38 @@ title: Select a file
                 class="flex flex-col gap-4"
             >
                 <template x-if="path.length > 0">
-                    <ul
-                        class="bg-white p-4 rounded-md text-lg flex flex-row gap-4"
+                    <div
+                        class="flex flex-row gap-4 items-center justify-between bg-white p-4 rounded-md text-lg"
                     >
-                        <li
-                            class="flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
-                        >
-                            <button
-                                x-on:click="navigate([])"
-                                x-html="icons.repo"
-                                title="Navigate to repositories"
-                            ></button>
-                        </li>
-                        <template x-for="(item, index) in path">
+                        <ul class="flex-1 flex flex-row gap-4 min-w-0">
                             <li
-                                class="min-w-0 flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
+                                class="flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
                             >
                                 <button
-                                    x-html="`${icons.dir} ${item.name}`"
-                                    class="text-nowrap truncate flex flex-row gap-2 items-center"
-                                    x-on:click="navigate(path.slice(0, index + 1))"
-                                    title="Navigate to directory"
+                                    x-on:click="navigate([])"
+                                    x-html="icons.repo"
+                                    title="Navigate to repositories"
                                 ></button>
                             </li>
-                        </template>
-                    </ul>
+                            <template x-for="(item, index) in path">
+                                <li
+                                    class="min-w-0 flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
+                                >
+                                    <button
+                                        x-html="`${icons.dir} <span class='text-nowrap truncate'>${item.name}</span>`"
+                                        class="flex flex-row gap-2 items-center min-w-0 font-medium"
+                                        x-on:click="navigate(path.slice(0, index + 1))"
+                                        title="Navigate to directory"
+                                    ></button>
+                                </li>
+                            </template>
+                        </ul>
+                        <button
+                            x-html="`${icons.plus} Create`"
+                            class="text-nowrap truncate flex flex-row gap-2 items-center text-blue-600 font-medium"
+                            x-on:click="select(path)"
+                        ></button>
+                    </div>
                 </template>
 
                 <input
@@ -58,7 +65,7 @@ title: Select a file
                     <template x-for="item in _items">
                         <li class="flex flex-row">
                             <button
-                                class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center"
+                                class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center font-medium"
                                 x-on:click="select(item)"
                                 title="Select"
                             >

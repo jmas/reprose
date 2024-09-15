@@ -12,7 +12,7 @@
     </div>
 
     <div
-        class="flex-1 text-lg font-medium flex flex-row justify-center items-center truncate p-2"
+        class="flex-1 text-lg font-bold flex flex-row justify-center items-center truncate p-2"
     >
         {{ page.title }}
     </div>
@@ -22,7 +22,7 @@
         <template x-if="!auth.check()">
             <button
                 x-on:click="login()"
-                class="text-lg p-2"
+                class="text-lg font-medium p-2"
                 x-html="icons.login"
                 title="Login"
             ></button>
@@ -30,7 +30,7 @@
         <template x-if="auth.check()">
             <button
                 x-on:click="logout()"
-                class="text-lg p-2"
+                class="text-lg font-medium p-2"
                 x-html="icons.logout"
                 title="Logout"
             ></button>

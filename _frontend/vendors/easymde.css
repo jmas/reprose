@@ -44,10 +44,6 @@
     @apply w-full;
 }
 
-.EasyMDEContainer .cm-header {
-    @apply font-medium;
-}
-
 .EasyMDEContainer .cm-header.cm-header-1 {
     @apply text-2xl;
 }
@@ -87,15 +83,15 @@
 }
 
 .EasyMDEContainer .editor-preview h1 {
-    @apply text-2xl font-medium;
+    @apply text-2xl font-bold;
 }
 
 .EasyMDEContainer .editor-preview h2 {
-    @apply text-xl font-medium;
+    @apply text-xl font-bold;
 }
 
 .EasyMDEContainer .editor-preview h3 {
-    @apply text-lg font-medium;
+    @apply text-lg font-bold;
 }
 
 .EasyMDEContainer .editor-preview *:is(ul, ol) {

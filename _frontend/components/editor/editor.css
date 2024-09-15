@@ -1,9 +1,7 @@
 .editor-submit {
-    @apply px-4 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-3 items-center;
+    @apply px-4 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-2 items-center;
 }
 
 .editor-settings {
     @apply px-4 font-medium rounded-md border-none;
 }
-
-/**/

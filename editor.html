@@ -21,7 +21,7 @@ back: /finder
 
         <input
             type="text"
-            class="flex-1 py-2 px-2 text-2xl font-medium rounded-md"
+            class="flex-1 py-2 px-2 text-2xl font-bold rounded-md"
             placeholder="Title"
             x-model="attributes.title"
             x-bind:disabled="loading"
@@ -37,36 +37,8 @@ back: /finder
         ></button>
 
         <button
-            class="px-4 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-3 items-center"
+            class="px-4 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-2 items-center"
             x-html="saving ? icons.spinner : `${icons.save} Save`"
-            title="Save"
-        ></button>
-    </div>
-    <div class="flex flex-row gap-4 p-6 hidden">
-        <div
-            class="w-full bg-white flex flex-row items-center rounded-md border-2"
-        >
-            <input
-                type="text"
-                class="flex-1 py-3 px-4 text-2xl font-medium rounded-md"
-                placeholder="Title"
-                x-model="attributes.title"
-                x-bind:disabled="loading"
-            />
-
-            <button
-                type="button"
-                class="editor-settings"
-                x-html="icons.gear"
-                x-on:click="toggleSettings"
-                title="Settings"
-                x-bind:disabled="loading"
-            ></button>
-        </div>
-
-        <button
-            class="editor-submit"
-            x-html="saving ? icons.spinner : icons.save"
             title="Save"
         ></button>
     </div>
