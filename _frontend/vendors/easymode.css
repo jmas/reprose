@@ -1,7 +1,19 @@
 @import "easymde/dist/easymde.min.css";
 
+.EasyMDEContainer {
+    @apply flex flex-col items-center;
+}
+
 .EasyMDEContainer .editor-toolbar {
-    @apply border-0 bg-slate-50 rounded-none p-2 flex flex-row gap-2 items-center text-lg;
+    @apply w-full border-0 bg-slate-50 rounded-none py-4 px-6 flex flex-row gap-2 items-center text-lg;
+}
+
+.EasyMDEContainer .CodeMirror:not(.CodeMirror-fullscreen) {
+    @apply max-w-screen-lg;
+}
+
+.EasyMDEContainer .editor-statusbar {
+    @apply w-full max-w-screen-lg;
 }
 
 .EasyMDEContainer .editor-toolbar button {
@@ -13,11 +25,11 @@
 }
 
 .EasyMDEContainer .editor-toolbar:not(.fullscreen) {
-    @apply sticky top-0 z-10;
+    @apply sticky top-0 z-10 max-w-screen-lg;
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply rounded-md border-none text-lg p-4;
+    @apply w-full rounded-md border-none text-lg p-6;
 }
 
 .EasyMDEContainer .editor-preview {

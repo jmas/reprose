@@ -1,11 +1,48 @@
 ---
 layout: default
 title: Edit
+header: false
+full: true
 back: /finder
 ---
 
-<form x-data="editor" class="flex flex-col gap-4" x-on:submit.prevent="save">
-    <div class="flex flex-row gap-4">
+<form
+    x-data="editor"
+    class="flex flex-col items-center"
+    x-on:submit.prevent="save"
+>
+    <div class="bg-white p-4 flex flex-row items-center gap-4 w-full">
+        <a
+            href="{{ page.back }}"
+            class="p-2"
+            x-html="icons.prev"
+            title="Back"
+        ></a>
+
+        <input
+            type="text"
+            class="flex-1 py-2 px-2 text-2xl font-medium rounded-md"
+            placeholder="Title"
+            x-model="attributes.title"
+            x-bind:disabled="loading"
+        />
+
+        <button
+            type="button"
+            class="px-4 font-medium rounded-md border-none"
+            x-html="icons.gear"
+            x-on:click="toggleSettings"
+            title="Settings"
+            x-bind:disabled="loading"
+        ></button>
+
+        <button
+            class="px-4 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-3 items-center"
+            x-html="saving ? icons.spinner : `${icons.save} Save`"
+            title="Save"
+        ></button>
+    </div>
+    <div class="flex flex-row gap-4 p-6 hidden">
         <div
             class="w-full bg-white flex flex-row items-center rounded-md border-2"
         >
@@ -34,7 +71,7 @@ back: /finder
         ></button>
     </div>
 
-    <ul x-show="settingsDisplayed">
+    <ul x-show="settingsDisplayed" class="w-full max-w-screen-lg p-6">
         <template x-for="(value, key) in attributes">
             <template x-if="key !== 'title'">
                 <li class="flex flex-row gap-4 items-start">
