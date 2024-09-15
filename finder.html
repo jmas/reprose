@@ -16,13 +16,21 @@ showAuthButtons: true
                     <ul
                         class="bg-white p-4 rounded-md text-lg flex flex-row gap-4"
                     >
+                        <li
+                            class="flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
+                        >
+                            <button
+                                x-on:click="navigate([])"
+                                x-html="icons.repo"
+                            ></button>
+                        </li>
                         <template x-for="(item, index) in path">
                             <li
                                 class="min-w-0 flex flex-row gap-4 items-center after:content-['→'] last:after:content-['']"
                             >
                                 <button
-                                    x-text="item.name"
-                                    class="text-nowrap truncate"
+                                    x-html="`${icons.dir} ${item.name}`"
+                                    class="text-nowrap truncate flex flex-row gap-2 items-center"
                                     x-on:click="navigate(path.slice(0, index + 1))"
                                 ></button>
                             </li>

@@ -1,16 +1,17 @@
 import { Octokit } from "octokit";
+import { del, get, put } from "./localstorage";
 
 export default {
   set(auth) {
-    localStorage["auth"] = JSON.stringify(auth);
+    put("auth", auth);
   },
 
   get() {
-    return JSON.parse(localStorage["auth"] ?? "null");
+    return get("auth");
   },
 
   clear() {
-    delete localStorage["auth"];
+    del("auth");
   },
 
   oktokit() {

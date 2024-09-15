@@ -1,5 +1,6 @@
 import auth from "../../utils/auth";
 import icons from "../../utils/icons";
+import { get, put } from "../../utils/localstorage";
 
 window.finder = () => {
   return {
@@ -10,8 +11,17 @@ window.finder = () => {
     loading: true,
 
     async init() {
+      this.path = this.getPathFromLocalStorage();
       this.owner = await auth.username();
       await this.update();
+    },
+
+    getPathFromLocalStorage() {
+      return get("path", []);
+    },
+
+    putPathToLocalStorage(path) {
+      put("path", path);
     },
 
     getRepo() {
@@ -89,6 +99,7 @@ window.finder = () => {
 
     async push(item) {
       this.path.push(item);
+      this.putPathToLocalStorage(this.path);
       await this.update();
     },
 
@@ -105,6 +116,7 @@ window.finder = () => {
 
     async navigate(path) {
       this.path = path;
+      this.putPathToLocalStorage(this.path);
       await this.update();
     },
   };
