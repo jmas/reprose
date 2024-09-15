@@ -1,4 +1,4 @@
-{% if page.title %}
+{% if page.header %}
 <div class="bg-white p-4 flex flex-row w-full">
     <div class="w-1/4 flex flex-row items-center">
         {% if page.back %}
@@ -18,7 +18,7 @@
     </div>
 
     <div class="w-1/4 flex flex-row items-center justify-end">
-        {% if page.showAuthButtons %}
+        {% if page.authButtons %}
         <template x-if="!auth.check()">
             <button
                 x-on:click="login()"
