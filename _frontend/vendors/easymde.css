@@ -36,8 +36,12 @@
     @apply rounded-none;
 }
 
-.EasyMDEContainer .editor-preview {
-    @apply bg-slate-50;
+.EasyMDEContainer .editor-preview.editor-preview-active {
+    @apply flex flex-col bg-slate-50 gap-4 text-lg;
+}
+
+.EasyMDEContainer .editor-preview.editor-preview-active > * {
+    @apply w-full;
 }
 
 .EasyMDEContainer .cm-header {
