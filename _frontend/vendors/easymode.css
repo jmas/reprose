@@ -8,6 +8,10 @@
     @apply block flex justify-center items-center min-h-8 min-w-8 p-0;
 }
 
+.EasyMDEContainer .editor-toolbar i.separator {
+    @apply border-slate-300 border-r-0;
+}
+
 .EasyMDEContainer .editor-toolbar:not(.fullscreen) {
     @apply sticky top-0 z-10;
 }

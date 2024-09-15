@@ -22,6 +22,7 @@ showAuthButtons: true
                             <button
                                 x-on:click="navigate([])"
                                 x-html="icons.repo"
+                                title="Navigate to repositories"
                             ></button>
                         </li>
                         <template x-for="(item, index) in path">
@@ -32,6 +33,7 @@ showAuthButtons: true
                                     x-html="`${icons.dir} ${item.name}`"
                                     class="text-nowrap truncate flex flex-row gap-2 items-center"
                                     x-on:click="navigate(path.slice(0, index + 1))"
+                                    title="Navigate to directory"
                                 ></button>
                             </li>
                         </template>
@@ -57,6 +59,7 @@ showAuthButtons: true
                             <button
                                 class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center"
                                 x-on:click="select(item)"
+                                title="Select"
                             >
                                 <span x-html="item.icon"></span>
                                 <span

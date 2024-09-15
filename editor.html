@@ -22,12 +22,14 @@ showAuthButtons: true
                 class="editor-settings"
                 x-html="icons.gear"
                 x-on:click="toggleSettings"
+                title="Settings"
             ></button>
         </div>
 
         <button
             class="editor-submit"
             x-html="saving ? icons.spinner : icons.save"
+            title="Save"
         ></button>
     </div>
 

@@ -2,7 +2,12 @@
 <div class="bg-white p-4 flex flex-row w-full">
     <div class="w-1/4 flex flex-row items-center">
         {% if page.back %}
-        <a href="{{ page.back }}" class="p-2" x-html="icons.prev"></a>
+        <a
+            href="{{ page.back }}"
+            class="p-2"
+            x-html="icons.prev"
+            title="Back"
+        ></a>
         {% endif %}
     </div>
 
@@ -15,10 +20,20 @@
     <div class="w-1/4 flex flex-row items-center justify-end">
         {% if page.showAuthButtons %}
         <template x-if="!auth.check()">
-            <button x-on:click="login()" class="text-lg p-2">Login</button>
+            <button
+                x-on:click="login()"
+                class="text-lg p-2"
+                x-html="icons.login"
+                title="Login"
+            ></button>
         </template>
         <template x-if="auth.check()">
-            <button x-on:click="logout()" class="text-lg p-2">Logout</button>
+            <button
+                x-on:click="logout()"
+                class="text-lg p-2"
+                x-html="icons.logout"
+                title="Logout"
+            ></button>
         </template>
         {% endif %}
     </div>
