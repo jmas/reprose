@@ -1,7 +1,7 @@
 @import "easymde/dist/easymde.min.css";
 
 .EasyMDEContainer {
-    @apply flex flex-col items-center;
+    @apply w-full flex flex-col items-center;
 }
 
 .EasyMDEContainer .editor-toolbar {
