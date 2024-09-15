@@ -17,7 +17,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar button {
-    @apply block flex justify-center items-center min-h-8 min-w-8 p-0;
+    @apply flex justify-center items-center min-h-8 min-w-8 p-0;
 }
 
 .EasyMDEContainer .editor-toolbar i.separator {
@@ -29,7 +29,7 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-md border-none text-lg p-6;
+    @apply w-full rounded-md border-none text-lg p-6 bg-white;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
