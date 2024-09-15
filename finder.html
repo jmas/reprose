@@ -49,7 +49,10 @@ showAuthButtons: true
 
                 <ul class="flex flex-col gap-4">
                     <template x-if="loading">
-                        <li class="text-center p-4 text-lg">Loading&hellip;</li>
+                        <li
+                            class="flex items-center justify-center p-4 text-4xl"
+                            x-html="icons.spinner"
+                        ></li>
                     </template>
                     <template x-if="!loading && _items().length === 0">
                         <li class="text-center p-4 text-lg">Empty</li>

@@ -12,6 +12,7 @@ window.editor = () => ({
   sha: null,
   settingsDisplayed: false,
   saving: false,
+  loading: false,
   attributes: {
     title: "",
     description: "",
@@ -71,6 +72,8 @@ window.editor = () => ({
   },
 
   async load() {
+    this.loading = true;
+
     const { content, sha } = await this.fetchContents();
     const { attributes, body } = fm(decode(content));
 
@@ -80,6 +83,8 @@ window.editor = () => ({
     };
     this.body = body;
     this.sha = sha;
+
+    this.loading = false;
   },
 
   async save() {
