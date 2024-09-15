@@ -51,3 +51,47 @@
 .EasyMDEContainer .cm-header.cm-header-3 {
     @apply text-lg;
 }
+
+.EasyMDEContainer .CodeMirror.CodeMirror-fullscreen + .editor-preview-side {
+    @apply bg-white border-none p-6 flex flex-col gap-4 text-lg;
+}
+
+.EasyMDEContainer .CodeMirror.CodeMirror-fullscreen + .editor-preview-side > * {
+    @apply w-full;
+}
+
+.EasyMDEContainer .editor-preview *:is(code, pre) {
+    @apply bg-slate-100;
+}
+
+.EasyMDEContainer .editor-preview code {
+    @apply p-1;
+}
+
+.EasyMDEContainer .editor-preview a {
+    @apply text-blue-600;
+}
+
+.EasyMDEContainer .editor-preview pre {
+    @apply mb-0 whitespace-pre-wrap p-4 rounded-md;
+}
+
+.EasyMDEContainer .editor-preview h1 {
+    @apply text-2xl font-medium;
+}
+
+.EasyMDEContainer .editor-preview h2 {
+    @apply text-xl font-medium;
+}
+
+.EasyMDEContainer .editor-preview h3 {
+    @apply text-lg font-medium;
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-link {
+    @apply text-blue-600;
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-url {
+    @apply text-blue-500;
+}
