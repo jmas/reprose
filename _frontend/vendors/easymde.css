@@ -45,15 +45,19 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-none border-none text-lg bg-white p-6 pt-0;
+    @apply w-full rounded-none text-lg bg-white p-6 pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
 }
 
 .EasyMDEContainer .CodeMirror-lines {
     @apply pt-6;
 }
 
+.EasyMDEContainer .CodeMirror pre.CodeMirror-line {
+    @apply px-0;
+}
+
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
-    @apply rounded-none top-14;
+    @apply rounded-none top-14 border-l-0 border-r-0;
 }
 
 .EasyMDEContainer
