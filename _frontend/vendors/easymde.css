@@ -89,7 +89,7 @@
 .EasyMDEContainer
     .CodeMirror.CodeMirror-fullscreen.CodeMirror-sided
     + .editor-preview-side {
-    @apply bg-white border-none p-6 flex flex-col gap-4 text-lg;
+    @apply bg-white p-6 flex flex-col gap-4 text-lg border-0 border-l border-solid border-slate-200;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen + .editor-preview-side > * {
