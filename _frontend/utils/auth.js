@@ -1,4 +1,3 @@
-import { Octokit } from "octokit";
 import { del, get, put } from "./localstorage";
 
 export default {
@@ -14,10 +13,16 @@ export default {
     del("auth");
   },
 
-  oktokit() {
+  async oktokit() {
+    const Octokit = (await import("octokit")).Octokit;
+
     return new Octokit({
       auth: this.get().access_token,
     });
+  },
+
+  async request(...args) {
+    return await (await this.oktokit()).request(...args);
   },
 
   check() {
@@ -25,7 +30,7 @@ export default {
   },
 
   async user() {
-    return (await this.oktokit().request("GET /user")).data;
+    return (await this.request("GET /user")).data;
   },
 
   async username() {

@@ -58,13 +58,10 @@ buttonsEnd: modal_close_button.html
 
                 <ul class="flex flex-col gap-4">
                     <template x-if="loading">
-                        <li
-                            class="flex items-center justify-center p-4 text-4xl"
-                            x-html="icons.spinner"
-                        ></li>
+                        <li class="loading" x-html="icons.spinner"></li>
                     </template>
                     <template x-if="!loading && _items().length === 0">
-                        <li class="text-center p-4 text-lg">Empty</li>
+                        <li class="empty">Empty</li>
                     </template>
                     <template x-for="item in _items">
                         <li class="flex flex-row">

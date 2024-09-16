@@ -41,7 +41,7 @@ window.finder = () => {
 
     async fetchRepos() {
       return (
-        await auth.oktokit().request("GET /user/repos", {
+        await auth.request("GET /user/repos", {
           per_page: 100,
           type: "owner",
         })
@@ -59,7 +59,7 @@ window.finder = () => {
       const url = `GET /repos/${this.owner}/${repo}/contents/${path}`;
 
       return (
-        await auth.oktokit().request(url, {
+        await auth.request(url, {
           per_page: 100,
         })
       ).data

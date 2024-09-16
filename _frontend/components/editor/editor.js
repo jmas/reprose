@@ -64,6 +64,16 @@ window.editor = () => ({
     return new URL(window.location.href).searchParams.get("path");
   },
 
+  getRepo() {
+    const _path = this.path.split("/");
+    return _path[0] ?? null;
+  },
+
+  getPathWithoutRepo() {
+    const _path = this.path.split("/");
+    return _path.slice(1).join("/");
+  },
+
   getFilename() {
     const _path = this.path.split("/");
     return _path.slice(_path.length - 1, _path.length);
@@ -122,28 +132,20 @@ window.editor = () => ({
   },
 
   async fetchContents() {
-    const _path = this.path.split("/");
-    const repo = _path[0];
-    const path = _path.slice(1).join("/");
+    const url = `GET /repos/${this.owner}/${this.getRepo()}/contents/${this.getPathWithoutRepo()}`;
 
-    const url = `GET /repos/${this.owner}/${repo}/contents/${path}`;
-
-    return (await auth.oktokit().request(url)).data;
+    return (await auth.request(url)).data;
   },
 
   async putContents() {
-    const _path = this.path.split("/");
-    const repo = _path[0];
-    const path = _path.slice(1).join("/");
-    const url = `PUT /repos/${this.owner}/${repo}/contents/${path}`;
+    const url = `PUT /repos/${this.owner}/${this.getRepo()}/contents/${this.getPathWithoutRepo()}`;
 
     const content = `---\n${stringify(this.getAttributes()).trim()}\n---\n${this.getBody().trim()}`;
 
     return (
-      await auth.oktokit().request(url, {
-        path,
+      await auth.request(url, {
         message: `Update ${this.getFilename()} via Reprose`,
-        sha: this.sha,
+        sha: this.sha ?? undefined,
         content: encode(content),
       })
     ).data;

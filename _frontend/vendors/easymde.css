@@ -9,7 +9,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar.disabled-for-preview button:not(.no-disable) {
-    @apply opacity-25;
+    @apply text-slate-400 text-opacity-50;
 }
 
 .EasyMDEContainer .editor-toolbar.fullscreen {
@@ -17,7 +17,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar button {
-    @apply border-none hover:bg-slate-200 rounded-md transition;
+    @apply border-none hover:bg-slate-200 rounded-md transition text-base;
 }
 
 .EasyMDEContainer .editor-toolbar button.active {
@@ -33,7 +33,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar button {
-    @apply flex justify-center items-center min-h-8 min-w-8 p-0;
+    @apply flex justify-center items-center min-h-8 min-w-8 p-0 text-slate-900;
 }
 
 .EasyMDEContainer .editor-toolbar i.separator:has(+ button.guide) {
@@ -61,7 +61,7 @@
 }
 
 .EasyMDEContainer .CodeMirror pre.CodeMirror-line {
-    @apply px-0;
+    @apply leading-7;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
@@ -108,12 +108,16 @@
     @apply p-6 bg-white;
 }
 
+.EasyMDEContainer .editor-preview p {
+    @apply leading-8;
+}
+
 .EasyMDEContainer .editor-preview *:is(code, pre) {
     @apply bg-slate-100;
 }
 
 .EasyMDEContainer .editor-preview code {
-    @apply p-1;
+    @apply p-0.5 rounded-sm;
 }
 
 .EasyMDEContainer .editor-preview a {
@@ -152,8 +156,20 @@
     @apply list-decimal;
 }
 
+.EasyMDEContainer .editor-preview li {
+    @apply leading-7;
+}
+
+.EasyMDEContainer .editor-preview blockquote {
+    @apply bg-blue-50 py-2 px-4 border-l-4 border-blue-200 rounded-md italic flex flex-col gap-4;
+}
+
+.EasyMDEContainer .editor-preview blockquote > * {
+    @apply w-full;
+}
+
 .EasyMDEContainer .cm-s-easymde .cm-link {
-    @apply text-blue-500;
+    @apply text-blue-600;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-url {
@@ -161,7 +177,11 @@
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-comment {
-    @apply bg-slate-100 py-1 font-mono text-base bg-opacity-50;
+    @apply bg-slate-100 py-0.5 rounded-sm font-mono text-base bg-opacity-60;
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-quote {
+    @apply bg-blue-100 py-0.5 rounded-sm bg-opacity-60 text-black;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-tag {
@@ -175,9 +195,32 @@
 .EasyMDEContainer
     .cm-s-easymde
     *:is(.cm-formatting-code-block, .cm-formatting-code) {
-    @apply bg-slate-200 font-mono text-base bg-opacity-50;
+    @apply bg-slate-200 font-mono text-base bg-opacity-60;
+}
+
+.EasyMDEContainer
+    .cm-s-easymde
+    .cm-formatting-code:has(+ .cm-comment:not(.cm-formatting-code)) {
+    @apply rounded-e-none;
+}
+
+.EasyMDEContainer
+    .cm-s-easymde
+    .cm-formatting-code
+    + .cm-comment:not(.cm-formatting-code) {
+    @apply rounded-none;
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-comment + .cm-formatting-code {
+    @apply rounded-s-none;
 }
 
 .EasyMDEContainer .CodeMirror-scroll {
     min-height: calc(100vh - 12rem) !important;
+}
+
+.EasyMDEContainer .CodeMirror-line::selection,
+.EasyMDEContainer .CodeMirror-line > span::selection,
+.EasyMDEContainer .CodeMirror-line > span > span::selection {
+    background: rgb(219 234 254 / var(--tw-bg-opacity));
 }

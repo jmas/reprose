@@ -15,7 +15,7 @@ full: true
             <a
                 href="reprose:browse"
                 class="button"
-                x-html="`${icons.open} Open`"
+                x-html="`${icons.open} <span class='hidden lg:block'>Open</span>`"
             ></a>
         </div>
 
@@ -41,7 +41,7 @@ full: true
 
             <button
                 class="button button-primary"
-                x-html="saving ? icons.spinner : `${icons.save} Save`"
+                x-html="saving ? icons.spinner : `${icons.save} <span class='hidden lg:block'>Save</span>`"
                 title="Save"
             ></button>
         </div>
