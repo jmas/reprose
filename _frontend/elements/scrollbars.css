@@ -1,0 +1,5 @@
+* {
+    scrollbar-color: rgb(203 213 225 / var(--tw-border-opacity))
+        rgb(248 250 252 / var(--tw-bg-opacity));
+    scrollbar-width: thin;
+}

@@ -5,6 +5,7 @@
 @import "../elements/button.css";
 @import "../elements/header.css";
 @import "../elements/loading.css";
+@import "../elements/scrollbars.css";
 
 @tailwind base;
 @tailwind components;
