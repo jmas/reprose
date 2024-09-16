@@ -1,3 +1,4 @@
+import { Alpine } from "alpinejs";
 import auth from "../../utils/auth";
 import { get, put } from "../../utils/localstorage";
 
@@ -39,13 +40,19 @@ window.finder = () => {
         .join("/");
     },
 
-    async fetchRepos() {
+    async fetchRepos(skipPages = 0, pagesLimit = 20) {
       const items = [];
 
       try {
         let page = 1;
 
-        while (true) {
+        while (page <= pagesLimit) {
+          if (page <= skipPages) {
+            page++;
+
+            continue;
+          }
+
           const fetched = (
             await auth.request("GET /user/repos", {
               per_page: 100,
@@ -64,6 +71,7 @@ window.finder = () => {
           }
 
           items.push(...fetched);
+
           page++;
         }
       } catch (error) {}
@@ -112,12 +120,21 @@ window.finder = () => {
       this.loading = true;
 
       if (this.path.length === 0) {
-        this.items = await this.fetchRepos();
+        this.items = await this.fetchRepos(0, 1);
       } else {
         this.items = await this.fetchDir();
       }
 
       this.loading = false;
+
+      if (this.path.length === 0) {
+        requestAnimationFrame(async () => {
+          this.items = [
+            ...Alpine.raw(this.items),
+            ...(await this.fetchRepos(1)),
+          ];
+        });
+      }
     },
 
     async push(item) {
