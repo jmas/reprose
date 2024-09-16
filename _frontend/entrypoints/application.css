@@ -1,11 +1,6 @@
 @import "../vendors/easymde.css";
 @import "../components/editor/editor.css";
-
-.icon {
-    @apply min-w-6 min-h-6;
-    width: 1.1em;
-    height: 1.1em;
-}
+@import "../elements/icon.css";
 
 @tailwind base;
 @tailwind components;

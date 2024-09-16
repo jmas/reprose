@@ -122,6 +122,14 @@
     @apply bg-slate-100 py-1 font-mono;
 }
 
+.EasyMDEContainer .cm-s-easymde .cm-tag {
+    @apply bg-green-50 text-green-500 py-1 font-mono;
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-attribute {
+    @apply text-purple-500 font-mono;
+}
+
 .EasyMDEContainer
     .cm-s-easymde
     *:is(.cm-formatting-code-block, .cm-formatting-code) {

@@ -29,7 +29,7 @@ back: /finder
 
         <button
             type="button"
-            class="px-4 font-medium rounded-md border-none"
+            class="p-2 font-medium rounded-md border-none"
             x-html="icons.gear"
             x-on:click="toggleSettings"
             title="Settings"
@@ -37,7 +37,7 @@ back: /finder
         ></button>
 
         <button
-            class="px-4 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-2 items-center"
+            class="p-2 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-2 items-center"
             x-html="saving ? icons.spinner : `${icons.save} Save`"
             title="Save"
         ></button>

@@ -1,0 +1,5 @@
+.icon {
+    @apply min-w-6 min-h-6;
+    width: 1.1em;
+    height: 1.1em;
+}
