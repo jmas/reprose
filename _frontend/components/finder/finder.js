@@ -40,17 +40,35 @@ window.finder = () => {
     },
 
     async fetchRepos() {
-      return (
-        await auth.request("GET /user/repos", {
-          per_page: 100,
-          type: "owner",
-        })
-      ).data
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map(({ name }) => ({
-          type: "repo",
-          name,
-        }));
+      const items = [];
+
+      try {
+        let page = 1;
+
+        while (true) {
+          const fetched = (
+            await auth.request("GET /user/repos", {
+              per_page: 100,
+              type: "owner",
+              page,
+            })
+          ).data
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(({ name }) => ({
+              type: "repo",
+              name,
+            }));
+
+          if (fetched.length === 0) {
+            break;
+          }
+
+          items.push(...fetched);
+          page++;
+        }
+      } catch (error) {}
+
+      return items;
     },
 
     async fetchDir() {
@@ -58,22 +76,26 @@ window.finder = () => {
       const path = this.getPathWithoutRepo();
       const url = `GET /repos/${this.owner}/${repo}/contents/${path}`;
 
-      return (
-        await auth.request(url, {
-          per_page: 100,
-        })
-      ).data
-        .filter(
-          ({ name, type }) =>
-            type === "dir" ||
-            (type === "file" && name.match(/(\.(md|markdown)$)/)),
-        )
-        .map(({ name, type }) => ({
-          type: type === "dir" ? "dir" : "doc",
-          name,
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .sort(({ type }) => (type === "dir" ? -1 : type === "doc" ? 1 : 0));
+      try {
+        return (
+          await auth.request(url, {
+            per_page: 100,
+          })
+        ).data
+          .filter(
+            ({ name, type }) =>
+              type === "dir" ||
+              (type === "file" && name.match(/(\.(md|markdown)$)/)),
+          )
+          .map(({ name, type }) => ({
+            type: type === "dir" ? "dir" : "doc",
+            name,
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .sort(({ type }) => (type === "dir" ? -1 : type === "doc" ? 1 : 0));
+      } catch (error) {}
+
+      return [];
     },
 
     _items() {
