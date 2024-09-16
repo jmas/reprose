@@ -44,9 +44,9 @@ window.finder = () => {
           per_page: 100,
           type: "owner",
         })
-      )
+      ).data
         .sort((a, b) => a.name.localeCompare(b.name))
-        .data.map(({ name }) => ({
+        .map(({ name }) => ({
           type: "repo",
           name,
         }));
