@@ -44,10 +44,12 @@ window.finder = () => {
           per_page: 100,
           type: "owner",
         })
-      ).data.map(({ name }) => ({
-        type: "repo",
-        name,
-      }));
+      )
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .data.map(({ name }) => ({
+          type: "repo",
+          name,
+        }));
     },
 
     async fetchDir() {
@@ -69,6 +71,7 @@ window.finder = () => {
           type: type === "dir" ? "dir" : "doc",
           name,
         }))
+        .sort((a, b) => a.name.localeCompare(b.name))
         .sort(({ type }) => (type === "dir" ? -1 : type === "doc" ? 1 : 0));
     },
 

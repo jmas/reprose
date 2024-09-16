@@ -119,19 +119,19 @@
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-comment {
-    @apply bg-slate-100 py-1 font-mono;
+    @apply bg-slate-100 py-1 font-mono text-base bg-opacity-50;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-tag {
-    @apply bg-green-50 text-green-500 py-1 font-mono;
+    @apply bg-green-50 text-green-500 py-1 font-mono text-base;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-attribute {
-    @apply text-purple-500 font-mono;
+    @apply text-purple-500 font-mono text-base;
 }
 
 .EasyMDEContainer
     .cm-s-easymde
     *:is(.cm-formatting-code-block, .cm-formatting-code) {
-    @apply bg-slate-200;
+    @apply bg-slate-200 font-mono text-base bg-opacity-50;
 }
