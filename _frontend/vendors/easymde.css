@@ -5,7 +5,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar {
-    @apply w-full border-0 bg-slate-50 rounded-none px-4 py-3 lg:px-0 flex flex-row gap-2 items-center text-lg;
+    @apply w-full border-0 bg-slate-50 rounded-none px-4 py-3 lg:px-0 flex flex-row gap-2 items-center text-lg border-b border-solid border-slate-200;
 }
 
 .EasyMDEContainer .editor-toolbar.disabled-for-preview button:not(.no-disable) {
@@ -13,7 +13,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar.fullscreen {
-    @apply px-4 h-14;
+    @apply px-4 h-14 border-b border-solid border-slate-200;
 }
 
 .EasyMDEContainer .editor-toolbar button {
@@ -29,7 +29,7 @@
 }
 
 .EasyMDEContainer .editor-statusbar {
-    @apply sticky bottom-0 w-full max-w-screen-lg bg-slate-50 p-2 text-xs;
+    @apply sticky bottom-0 w-full max-w-screen-lg bg-slate-50 p-2 text-xs text-slate-400 border-t border-solid border-slate-200;
 }
 
 .EasyMDEContainer .editor-toolbar button {
@@ -45,11 +45,17 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-none lg:rounded-lg border-none text-lg p-6 bg-white;
+    @apply w-full rounded-none border-none text-lg p-6 bg-white;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
     @apply rounded-none top-14;
+}
+
+.EasyMDEContainer
+    .CodeMirror.CodeMirror-fullscreen.CodeMirror-sided
+    + .editor-preview-side {
+    @apply top-14;
 }
 
 .EasyMDEContainer .editor-preview.editor-preview-active {
@@ -83,7 +89,7 @@
 }
 
 .EasyMDEContainer .editor-preview.editor-preview-full {
-    @apply p-6 border-2 bg-white border-slate-200 rounded-lg;
+    @apply p-6 bg-white;
 }
 
 .EasyMDEContainer .editor-preview *:is(code, pre) {

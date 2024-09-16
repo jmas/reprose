@@ -1,3 +1,7 @@
 .loading {
-    @apply flex items-center justify-center p-4 text-4xl;
+    @apply flex items-center justify-center p-4 text-4xl min-h-24;
+}
+
+.loading > svg {
+    @apply w-8 h-8;
 }
