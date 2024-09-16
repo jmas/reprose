@@ -1,6 +1,10 @@
 @import "../vendors/easymde.css";
 @import "../components/editor/editor.css";
 @import "../elements/icon.css";
+@import "../elements/modal.css";
+@import "../elements/button.css";
+@import "../elements/header.css";
+@import "../elements/loading.css";
 
 @tailwind base;
 @tailwind components;

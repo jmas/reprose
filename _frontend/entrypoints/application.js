@@ -5,13 +5,21 @@ import "../components/editor/editor";
 import "../components/home/home";
 import auth from "../utils/auth";
 import icons from "../utils/icons";
+import {
+  defaultProtocol as modalProtocol,
+  init as initModal,
+} from "../utils/modal";
+import { init as initClicksRetransmitter } from "../utils/clicks-retransmitter";
+import protocol from "../protocol";
 
 window.icons = icons;
-
 window.auth = auth;
 window.Alpine = Alpine;
 
-Alpine.start();
+initModal();
 
-// Example: Import a stylesheet in <sourceCodeDir>/index.css
-// import '~/index.css'
+initClicksRetransmitter({
+  protocols: [protocol, modalProtocol],
+});
+
+Alpine.start();

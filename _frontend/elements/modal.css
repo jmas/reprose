@@ -1,0 +1,8 @@
+.modal[open] {
+    @apply w-full h-full max-w-screen-md flex flex-col rounded-lg shadow-md;
+    max-height: 80vh;
+}
+
+.modal iframe {
+    @apply w-full h-full rounded-lg;
+}

@@ -12,6 +12,7 @@ window.finder = () => {
     async init() {
       this.path = this.getPathFromLocalStorage();
       this.owner = await auth.username();
+
       await this.update();
     },
 
@@ -107,10 +108,20 @@ window.finder = () => {
       if (item.type === "repo" || item.type === "dir") {
         await this.push(item);
       } else {
-        const params = new URLSearchParams({
-          selected: [this.getPath(), item.name].join("/"),
-        });
-        window.location.href = `${this.$root.getAttribute("data-finder-url")}?${params}`;
+        const path = [this.getPath(), item.name].join("/");
+
+        if (window.frameElement) {
+          parent.postMessage(
+            `reprose:open?${new URLSearchParams({
+              path,
+            })}`,
+            "*",
+          );
+        } else {
+          location.href = `/editor?${new URLSearchParams({
+            path,
+          })}`;
+        }
       }
     },
 

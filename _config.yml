@@ -34,7 +34,6 @@ defaults:
     values:
       layout: "default"
       header: true
-      authButtons: true
 
 sass:
   quiet_deps: true

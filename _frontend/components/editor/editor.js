@@ -1,9 +1,10 @@
-import EasyMDE from "easymde";
 import auth from "../../utils/auth";
 import { decode, encode } from "js-base64";
 import fm from "front-matter";
 import { stringify } from "yaml";
 import { Alpine } from "alpinejs";
+import { init as initCommandHandler } from "../../utils/commands-handler";
+import protocol from "../../protocol";
 
 window.editor = () => ({
   editor: null,
@@ -20,16 +21,38 @@ window.editor = () => ({
   body: "",
 
   async init() {
+    const EasyMDE = (await import("easymde")).default;
+
     this.owner = await auth.username();
 
     this.path = this.getPathFromLocation();
 
-    await this.load();
+    if (this.path) {
+      await this.load();
+    }
 
     this.editor = new EasyMDE({
       element: this.$refs.input,
       spellChecker: false,
       initialValue: Alpine.raw(this.body),
+    });
+
+    initCommandHandler({
+      protocol,
+      commands: {
+        browse: () => {
+          parent.postMessage(
+            `modal:open?${new URLSearchParams({ url: "/finder" })}`,
+            "*",
+          );
+        },
+
+        open: (params) => {
+          location.href = `/editor?${new URLSearchParams({
+            path: params.get("path"),
+          })}`;
+        },
+      },
     });
   },
 
@@ -38,7 +61,7 @@ window.editor = () => ({
   },
 
   getPathFromLocation() {
-    return new URL(window.location.href).searchParams.get("selected");
+    return new URL(window.location.href).searchParams.get("path");
   },
 
   getFilename() {

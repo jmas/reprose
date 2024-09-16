@@ -1,40 +1,18 @@
 {% if page.header %}
-<div class="bg-white p-4 flex flex-row w-full">
-    <div class="w-1/4 flex flex-row items-center">
-        {% if page.back %}
-        <a
-            href="{{ page.back }}"
-            class="p-2"
-            x-html="icons.prev"
-            title="Back"
-        ></a>
+<div class="header header-sticky">
+    <div class="header-buttons header-buttons-start">
+        <!-- prettier-ignore-->
+        {% if page.buttonsStart %}
+        {% include {{ page.buttonsStart }} %}
         {% endif %}
     </div>
 
-    <div
-        class="flex-1 text-lg font-bold flex flex-row justify-center items-center truncate p-2"
-    >
-        {{ page.title }}
-    </div>
+    <div class="header-title">{{ page.title }}</div>
 
-    <div class="w-1/4 flex flex-row items-center justify-end">
-        {% if page.authButtons %}
-        <template x-if="!auth.check()">
-            <button
-                x-on:click="login()"
-                class="text-lg font-medium p-2"
-                x-html="icons.login"
-                title="Login"
-            ></button>
-        </template>
-        <template x-if="auth.check()">
-            <button
-                x-on:click="logout()"
-                class="text-lg font-medium p-2"
-                x-html="icons.logout"
-                title="Logout"
-            ></button>
-        </template>
+    <div class="header-buttons header-buttons-end">
+        <!-- prettier-ignore-->
+        {% if page.buttonsEnd %}
+        {% include {{ page.buttonsEnd }} %}
         {% endif %}
     </div>
 </div>

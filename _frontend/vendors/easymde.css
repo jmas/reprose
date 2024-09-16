@@ -5,7 +5,23 @@
 }
 
 .EasyMDEContainer .editor-toolbar {
-    @apply w-full border-0 bg-slate-50 rounded-none py-4 px-6 flex flex-row gap-2 items-center text-lg;
+    @apply w-full border-0 bg-slate-50 rounded-none px-4 py-3 lg:px-0 flex flex-row gap-2 items-center text-lg;
+}
+
+.EasyMDEContainer .editor-toolbar.disabled-for-preview button:not(.no-disable) {
+    @apply opacity-25;
+}
+
+.EasyMDEContainer .editor-toolbar.fullscreen {
+    @apply px-4 h-14;
+}
+
+.EasyMDEContainer .editor-toolbar button {
+    @apply border-none hover:bg-slate-200 rounded-md transition;
+}
+
+.EasyMDEContainer .editor-toolbar button.active {
+    @apply bg-slate-200;
 }
 
 .EasyMDEContainer .CodeMirror:not(.CodeMirror-fullscreen) {
@@ -13,7 +29,7 @@
 }
 
 .EasyMDEContainer .editor-statusbar {
-    @apply w-full max-w-screen-lg;
+    @apply sticky bottom-0 w-full max-w-screen-lg bg-slate-50 p-2 text-xs;
 }
 
 .EasyMDEContainer .editor-toolbar button {
@@ -29,11 +45,11 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-md border-none text-lg p-6 bg-white;
+    @apply w-full rounded-none lg:rounded-lg border-none text-lg p-6 bg-white;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
-    @apply rounded-none;
+    @apply rounded-none top-14;
 }
 
 .EasyMDEContainer .editor-preview.editor-preview-active {
@@ -64,6 +80,10 @@
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen + .editor-preview-side > * {
     @apply w-full;
+}
+
+.EasyMDEContainer .editor-preview.editor-preview-full {
+    @apply p-6 border-2 bg-white border-slate-200 rounded-lg;
 }
 
 .EasyMDEContainer .editor-preview *:is(code, pre) {

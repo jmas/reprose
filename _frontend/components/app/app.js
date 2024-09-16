@@ -1,7 +1,9 @@
 window.app = () => {
   return {
     init() {
-      //
+      window.addEventListener("message", (event) => {
+        console.log("message ", event.data);
+      });
     },
 
     login() {

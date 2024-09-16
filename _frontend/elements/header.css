@@ -1,0 +1,23 @@
+.header {
+    @apply bg-white p-3 flex flex-row items-center justify-between gap-4 w-full;
+}
+
+.header.header-sticky {
+    @apply sticky top-0;
+}
+
+.header-buttons {
+    @apply w-32 flex flex-row gap-2;
+}
+
+.header-buttons.header-buttons-start {
+    @apply justify-start;
+}
+
+.header-buttons.header-buttons-end {
+    @apply justify-end;
+}
+
+.header-title {
+    @apply flex-1 text-lg font-bold flex flex-row justify-center items-center min-h-10;
+}

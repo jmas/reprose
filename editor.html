@@ -3,7 +3,6 @@ layout: default
 title: Edit
 header: false
 full: true
-back: /finder
 ---
 
 <form
@@ -11,37 +10,42 @@ back: /finder
     class="flex flex-col items-center"
     x-on:submit.prevent="save"
 >
-    <div class="bg-white p-4 flex flex-row items-center gap-4 w-full">
-        <a
-            href="{{ page.back }}"
-            class="p-2"
-            x-html="icons.prev"
-            title="Back"
-        ></a>
+    <header class="header">
+        <div class="header-buttons header-buttons-start">
+            <a
+                href="reprose:browse"
+                class="button"
+                x-html="`${icons.open} Open`"
+            ></a>
+        </div>
 
-        <input
-            type="text"
-            class="flex-1 py-2 px-2 text-2xl font-bold rounded-md"
-            placeholder="Title"
-            x-model="attributes.title"
-            x-bind:disabled="loading"
-        />
+        <div class="header-title">
+            <input
+                type="text"
+                class="flex-1 py-2 px-2 text-2xl font-bold rounded-md max-w-screen-lg"
+                placeholder="Title"
+                x-model="attributes.title"
+                x-bind:disabled="loading"
+            />
+        </div>
 
-        <button
-            type="button"
-            class="p-2 font-medium rounded-md border-none"
-            x-html="icons.gear"
-            x-on:click="toggleSettings"
-            title="Settings"
-            x-bind:disabled="loading"
-        ></button>
+        <div class="header-buttons header-buttons-end">
+            <button
+                type="button"
+                class="button"
+                x-html="icons.gear"
+                x-on:click="toggleSettings"
+                title="Settings"
+                x-bind:disabled="loading"
+            ></button>
 
-        <button
-            class="p-2 font-medium rounded-md border-2 text-blue-600 border-none flex flex-row gap-2 items-center"
-            x-html="saving ? icons.spinner : `${icons.save} Save`"
-            title="Save"
-        ></button>
-    </div>
+            <button
+                class="button button-primary"
+                x-html="saving ? icons.spinner : `${icons.save} Save`"
+                title="Save"
+            ></button>
+        </div>
+    </header>
 
     <ul
         x-show="settingsDisplayed"
@@ -68,11 +72,7 @@ back: /finder
         </template>
     </ul>
 
-    <div
-        x-show="loading"
-        class="flex items-center justify-center p-4 text-4xl"
-        x-html="icons.spinner"
-    ></div>
+    <div x-show="loading" class="loading" x-html="icons.spinner"></div>
 
     <textarea
         x-ref="input"

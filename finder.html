@@ -1,5 +1,6 @@
 ---
 title: Select a file
+buttonsEnd: modal_close_button.html
 ---
 
 <div x-data class="flex flex-col gap-4">
@@ -33,6 +34,7 @@ title: Select a file
                                         class="flex flex-row gap-2 items-center min-w-0 font-medium"
                                         x-on:click="navigate(path.slice(0, index + 1))"
                                         title="Navigate to directory"
+                                        tabindex="0"
                                     ></button>
                                 </li>
                             </template>
@@ -41,6 +43,7 @@ title: Select a file
                             x-html="`${icons.plus} Create`"
                             class="text-nowrap truncate flex flex-row gap-2 items-center text-blue-600 font-medium"
                             x-on:click="select(path)"
+                            tabindex="0"
                         ></button>
                     </div>
                 </template>
@@ -50,6 +53,7 @@ title: Select a file
                     x-model="search"
                     class="py-3 px-4 text-lg rounded-md border-2"
                     placeholder="Search&hellip;"
+                    autofocus
                 />
 
                 <ul class="flex flex-col gap-4">
@@ -68,6 +72,7 @@ title: Select a file
                                 class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center font-medium"
                                 x-on:click="select(item)"
                                 title="Select"
+                                tabindex="0"
                             >
                                 <span
                                     x-html="item.type === 'repo' ? icons.repo : item.type === 'dir' ? icons.dir : icons.doc"

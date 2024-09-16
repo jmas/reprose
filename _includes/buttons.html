@@ -1,0 +1,15 @@
+{% for button in buttons %}
+<a
+    href="{{ button.uri }}"
+    x-on:click="login()"
+    class="text-lg font-medium p-2"
+    title="{{ button.title }}"
+    data-icon="{{ button.icon }}"
+>
+    {% if button.icon != nil %}
+    <span x-html="icons['{{ button.icon }}']"></span>
+    {% endif %} {% if button.label != nil %}
+    <span>{{ button.label }}</span>
+    {% endif %}
+</a>
+{% endfor %}
