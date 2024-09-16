@@ -52,7 +52,7 @@ buttonsEnd: modal_close_button.html
                     type="search"
                     x-model="search"
                     class="py-3 px-4 text-lg rounded-md border-2"
-                    placeholder="Search&hellip;"
+                    x-bind:placeholder="path.length === 0 ? 'Search for repository…' : 'Search in directory…'"
                     autofocus
                 />
 

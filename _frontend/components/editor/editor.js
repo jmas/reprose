@@ -35,6 +35,7 @@ window.editor = () => ({
       element: this.$refs.input,
       spellChecker: false,
       initialValue: Alpine.raw(this.body),
+      placeholder: "Start writing…",
     });
 
     initCommandHandler({
