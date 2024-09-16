@@ -36,6 +36,14 @@
     @apply flex justify-center items-center min-h-8 min-w-8 p-0;
 }
 
+.EasyMDEContainer .editor-toolbar i.separator:has(+ button.guide) {
+    display: none;
+}
+
+.EasyMDEContainer .editor-toolbar button.guide {
+    @apply ml-auto;
+}
+
 .EasyMDEContainer .editor-toolbar i.separator {
     @apply border-slate-300 border-r-0;
 }
@@ -145,11 +153,11 @@
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-link {
-    @apply text-blue-600;
+    @apply text-blue-500;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-url {
-    @apply text-blue-500;
+    @apply text-blue-400;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-comment {
@@ -168,4 +176,8 @@
     .cm-s-easymde
     *:is(.cm-formatting-code-block, .cm-formatting-code) {
     @apply bg-slate-200 font-mono text-base bg-opacity-50;
+}
+
+.EasyMDEContainer .CodeMirror-scroll {
+    min-height: calc(100vh - 12rem) !important;
 }
