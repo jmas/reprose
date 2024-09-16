@@ -45,7 +45,11 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-none border-none text-lg p-6 bg-white;
+    @apply w-full rounded-none border-none text-lg bg-white p-6 pt-0;
+}
+
+.EasyMDEContainer .CodeMirror-lines {
+    @apply pt-6;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
