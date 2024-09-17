@@ -20,9 +20,9 @@ export function init(config = {}) {
     }
   };
 
-  window.addEventListener("message", listener);
+  addEventListener("message", listener);
 
   return () => {
-    window.removeEventListener("message", listener);
+    removeEventListener("message", listener);
   };
 }

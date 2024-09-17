@@ -2,7 +2,7 @@ export function init(config = {}) {
   const protocols = config.protocols ?? [];
 
   if (protocols.length === 0) {
-    throw new Error("Missing required config option: protocol");
+    throw new Error("Missing required config option: protocols");
   }
 
   const listener = (event) => {
@@ -19,6 +19,6 @@ export function init(config = {}) {
   document.body.addEventListener("click", listener);
 
   return () => {
-    window.removeEventListener("click", listener);
+    removeEventListener("click", listener);
   };
 }

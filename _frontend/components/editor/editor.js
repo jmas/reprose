@@ -103,7 +103,7 @@ window.editor = () => ({
   },
 
   getPathFromLocation() {
-    return new URL(window.location.href).searchParams.get("path");
+    return new URL(location.href).searchParams.get("path");
   },
 
   getRepo() {

@@ -3,12 +3,12 @@ window.app = () => {
     init() {},
 
     login() {
-      window.location.href = "/auth";
+      location.href = "/auth";
     },
 
     logout() {
       auth.clear();
-      window.location.reload();
+      location.reload();
     },
   };
 };
