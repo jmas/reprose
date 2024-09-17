@@ -1,0 +1,13 @@
+@import "awesomplete/awesomplete.css";
+
+.awesomplete {
+    @apply: flex flex-row;
+}
+
+.awesomplete > * {
+    @apply w-full;
+}
+
+.awesomplete > ul {
+    @apply top-full z-40;
+}

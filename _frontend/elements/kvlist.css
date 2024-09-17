@@ -30,3 +30,11 @@ textarea.kvlist-input {
 .kvlist-add {
     @apply w-full bg-slate-50 min-h-12 flex flex-row gap-2 items-center justify-center hover:bg-slate-100;
 }
+
+.kvlist-item > .awesomplete {
+    @apply w-full flex flex-row items-stretch border-b border-b-slate-200 last:border-b-0 basis-4/6 h-12;
+}
+
+.kvlist-item > .awesomplete > input {
+    @apply basis-full;
+}

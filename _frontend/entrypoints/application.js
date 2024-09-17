@@ -3,6 +3,7 @@ import "../components/app/app";
 import "../components/finder/finder";
 import "../components/editor/editor";
 import "../components/home/home";
+import "../components/autocomplete/autocomplete";
 import auth from "../utils/auth";
 import icons from "../utils/icons";
 import {

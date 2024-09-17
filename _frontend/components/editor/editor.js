@@ -14,11 +14,10 @@ window.editor = () => ({
   sha: null,
   saving: false,
   loading: true,
-  attributes: {
-    title: "",
-    description: "",
-  },
+  filename: "",
+  attributes: {},
   body: "",
+  config: {},
 
   async init() {
     const EasyMDE = (await import("easymde")).default;
@@ -26,6 +25,10 @@ window.editor = () => ({
     this.owner = await auth.username();
 
     this.path = this.getPathFromLocation();
+
+    this.config = await auth.config(this.owner, this.getRepo());
+
+    this.filename = this.getFilename();
 
     if (this.path) {
       await this.load();
@@ -85,12 +88,11 @@ window.editor = () => ({
   },
 
   updateAttributes() {
-    const attributes = getKvData(this.$root, "attributes");
+    const attributes = this.config.formatAttributes(
+      getKvData(this.$root, "attributes"),
+    );
 
-    this.attributes = {
-      title: this.attributes.title,
-      ...attributes,
-    };
+    this.attributes = attributes;
 
     this.updateAutosize();
   },
@@ -105,14 +107,8 @@ window.editor = () => ({
     });
   },
 
-  attributesEntries() {
-    return Object.entries(this.attributes).sort(([keyA], [keyB]) =>
-      keyA !== "" && keyB === ""
-        ? -1
-        : keyA === "" && keyB !== ""
-          ? 1
-          : keyA.localeCompare(keyB),
-    );
+  fields() {
+    return this.config.getAttributesFields(Alpine.raw(this.attributes));
   },
 
   addAttribute() {
@@ -125,20 +121,21 @@ window.editor = () => ({
   async load() {
     this.loading = true;
 
-    const { content, sha } = await auth.fetchContents(
-      this.owner,
-      this.getRepo(),
-      this.getPathWithoutRepo(),
-    );
+    if (!this.path.endsWith("/")) {
+      const { content, sha } = await auth.fetchContents(
+        this.owner,
+        this.getRepo(),
+        this.getPathWithoutRepo(),
+      );
 
-    const { attributes, body } = fm(decode(content));
+      const { attributes, body } = fm(decode(content));
 
-    this.attributes = {
-      description: "",
-      ...attributes,
-    };
-    this.body = body;
-    this.sha = sha;
+      this.attributes = this.config.formatAttributes(attributes);
+      this.body = body;
+      this.sha = sha;
+    } else {
+      this.attributes = this.config.getDefaultAttributes();
+    }
 
     this.loading = false;
   },
@@ -146,15 +143,12 @@ window.editor = () => ({
   async save() {
     this.saving = true;
 
-    const attributes = Object.entries(Alpine.raw(this.attributes))
-      .filter(
-        ([key, value]) =>
-          String(key).trim() !== "" && String(value).trim() !== "",
-      )
-      .reduce((attributes, [key, value]) => {
-        attributes[key] = value;
-        return attributes;
-      }, {});
+    const attributes = this.config.formatAttributes(
+      Alpine.raw(this.attributes),
+      true,
+      true,
+    );
+
     const body = Alpine.raw(this.body);
 
     const content = [

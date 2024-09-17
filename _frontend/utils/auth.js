@@ -1,3 +1,5 @@
+import { decode } from "js-base64";
+import { configFns } from "./config-fns";
 import { del, get, put } from "./localstorage";
 
 export default {
@@ -58,5 +60,19 @@ export default {
         content,
       })
     ).data;
+  },
+
+  async config(owner, repo) {
+    let content = "";
+
+    try {
+      content = decode(
+        (await this.fetchContents(owner, repo, ".reproserc.yaml")).content,
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
+    return configFns(content);
   },
 };
