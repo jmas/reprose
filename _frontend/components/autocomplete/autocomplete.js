@@ -24,21 +24,24 @@ window.autocomplete = ({ type, values } = { type: "select", values: [] }) => {
     },
 
     handleFocus() {
+      console.log("handleFocus");
+
       requestAnimationFrame(() => {
+        awesomeplete.evaluate();
         awesomeplete.open();
       });
     },
 
     initSelect(input) {
       return new Awesomplete(input, {
-        minChars: -1,
+        minChars: 0,
         list: Alpine.raw(values),
       });
     },
 
     initMultiselect(input) {
       return new Awesomplete(input, {
-        minChars: -1,
+        minChars: 0,
         list: Alpine.raw(values),
 
         filter: function (text, input) {
