@@ -7,7 +7,7 @@ full: true
 
 <form
     x-data="editor"
-    class="flex flex-col items-center"
+    class="flex flex-col gap-6 items-center"
     x-on:submit.prevent="save"
 >
     <header class="header">
@@ -20,13 +20,15 @@ full: true
         </div>
 
         <div class="header-title">
-            <input
-                type="text"
-                class="flex-1 py-2 px-6 text-2xl font-bold rounded-md max-w-screen-lg outline-none"
-                placeholder="Title"
-                x-model="attributes.title"
-                x-bind:disabled="loading"
-            />
+            <div class="w-full flex flex-row max-w-screen-lg">
+                <input
+                    type="text"
+                    class="flex-1 w-full p-2 text-2xl font-bold rounded-md outline-none transition hover:bg-slate-100 focus:bg-slate-100"
+                    placeholder="Title"
+                    x-model="attributes.title"
+                    x-bind:disabled="loading"
+                />
+            </div>
         </div>
 
         <div class="header-buttons header-buttons-end">
@@ -47,25 +49,21 @@ full: true
         </div>
     </header>
 
-    <ul
-        x-show="settingsDisplayed"
-        class="w-full max-w-screen-lg p-6 flex flex-col gap-4"
-    >
+    <ul x-show="settingsDisplaying" class="kvlist">
         <template x-for="(value, key) in attributes">
             <template x-if="key !== 'title'">
-                <li class="w-full flex flex-row gap-4 items-start">
+                <li class="kvlist-item">
                     <input
                         type="text"
                         name="attributes[key][]"
                         x-bind:value="key"
-                        class="flex-1 py-3 px-4 text-lg font-medium rounded-md border-2"
-                        readonly
+                        class="kvlist-input kvlist-item-start"
                     />
                     <textarea
                         type="text"
                         name="attributes[value][]"
                         x-text="value"
-                        class="flex-1 py-3 px-4 min-h-32 text-lg font-medium rounded-md border-2"
+                        class="kvlist-input kvlist-item-end"
                     ></textarea>
                 </li>
             </template>

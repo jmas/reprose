@@ -5,13 +5,14 @@ import { stringify } from "yaml";
 import { Alpine } from "alpinejs";
 import { init as initCommandHandler } from "../../utils/commands-handler";
 import protocol from "../../protocol";
+import { get, put } from "../../utils/localstorage";
 
 window.editor = () => ({
   editor: null,
   owner: null,
   path: null,
   sha: null,
-  settingsDisplayed: false,
+  settingsDisplaying: get("settingsDisplaying", false),
   saving: false,
   loading: false,
   attributes: {
@@ -102,7 +103,8 @@ window.editor = () => ({
   },
 
   toggleSettings() {
-    this.settingsDisplayed = !this.settingsDisplayed;
+    this.settingsDisplaying = !this.settingsDisplaying;
+    put("settingsDisplaying", this.settingsDisplaying);
   },
 
   async load() {

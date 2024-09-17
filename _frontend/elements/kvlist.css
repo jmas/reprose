@@ -1,0 +1,23 @@
+.kvlist {
+    @apply w-full max-w-screen-lg flex flex-col bg-white border border-slate-200;
+}
+
+.kvlist-item {
+    @apply w-full flex flex-row items-stretch border-b border-b-slate-200;
+}
+
+.kvlist-item:has(+ template:last-child) {
+    @apply border-b-0;
+}
+
+.kvlist-input {
+    @apply basis-2/6 py-3 px-4 outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
+}
+
+.kvlist-input.kvlist-item-start {
+    @apply basis-2/6 bg-slate-50 bg-opacity-75 hover:bg-slate-100 focus:bg-slate-100;
+}
+
+.kvlist-input.kvlist-item-end {
+    @apply basis-4/6;
+}

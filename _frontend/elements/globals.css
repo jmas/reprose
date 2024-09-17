@@ -1,3 +1,8 @@
+html,
+body {
+    overscroll-behavior: none;
+}
+
 body {
     @apply text-slate-900;
 }

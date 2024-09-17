@@ -9,7 +9,8 @@
 @import "../elements/empty.css";
 @import "../elements/scrollbars.css";
 @import "../elements/selection.css";
-/**/
+@import "../elements/kvlist.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
