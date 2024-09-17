@@ -97,6 +97,15 @@ full: true
                             x-on:input="$dispatch('attributes-updated')"
                         ></input>
                     </template>
+                    <template x-if="field.type === 'date'">
+                        <input
+                            type="date"
+                            name="attributes[value][]"
+                            class="kvlist-input kvlist-input-value"
+                            x-bind:value="field.value"
+                            x-on:input="$dispatch('attributes-updated')"
+                        ></input>
+                    </template>
                     <template x-if="field.type === 'select'">
                         <input
                             type="text"

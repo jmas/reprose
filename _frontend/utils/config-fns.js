@@ -22,8 +22,8 @@ export function configFns(configYaml) {
       },
       {
         name: "date",
-        type: "datetime",
-        defaultValue: "%Y-%m-%dT%H:%M:%S",
+        type: "date",
+        defaultValue: "%Y-%m-%d",
       },
     ],
   };
