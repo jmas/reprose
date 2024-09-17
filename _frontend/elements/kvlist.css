@@ -6,7 +6,8 @@
     @apply w-full flex flex-row items-stretch border-b border-b-slate-200;
 }
 
-.kvlist-item:has(+ template:last-child) {
+.kvlist-item:has(+ template:last-child),
+.kvlist-item:has(> .kvlist-add) {
     @apply border-b-0;
 }
 
@@ -14,10 +15,18 @@
     @apply basis-2/6 py-3 px-4 min-h-12 outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
 }
 
-.kvlist-input.kvlist-item-start {
+textarea.kvlist-input {
+    @apply resize-none;
+}
+
+.kvlist-input.kvlist-input-key {
     @apply basis-2/6 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100;
 }
 
-.kvlist-input.kvlist-item-end {
+.kvlist-input.kvlist-input-value {
     @apply basis-4/6;
+}
+
+.kvlist-add {
+    @apply w-full bg-slate-50 min-h-12 flex flex-row gap-2 items-center justify-center;
 }

@@ -15,9 +15,9 @@ buttonsEnd: modal_close_button.html
                     <div
                         class="flex flex-row gap-4 items-center justify-between bg-white p-4 rounded-md text-lg"
                     >
-                        <ul class="flex-1 flex flex-row gap-4 min-w-0">
+                        <ul class="flex-1 flex flex-row gap-3 min-w-0">
                             <li
-                                class="flex flex-row gap-4 items-center after:content-['→'] last:after:content-[''] after:text-slate-400"
+                                class="flex flex-row gap-3 items-center after:content-['→'] last:after:content-[''] after:text-slate-400"
                             >
                                 <button
                                     x-on:click="navigate([])"
@@ -28,7 +28,7 @@ buttonsEnd: modal_close_button.html
                             </li>
                             <template x-for="(item, index) in path">
                                 <li
-                                    class="min-w-0 flex flex-row gap-4 items-center after:content-['→'] last:after:content-[''] after:text-slate-400"
+                                    class="min-w-0 flex flex-row gap-3 items-center after:content-['→'] last:after:content-[''] after:text-slate-400"
                                 >
                                     <button
                                         x-html="`${icons.dir} <span class='text-nowrap truncate'>${item.name}</span>`"

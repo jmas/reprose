@@ -6,6 +6,7 @@ import { Alpine } from "alpinejs";
 import { init as initCommandHandler } from "../../utils/commands-handler";
 import protocol from "../../protocol";
 import { get, put } from "../../utils/localstorage";
+import { getKvData } from "../../utils/form-kvdata";
 
 window.editor = () => ({
   editor: null,
@@ -37,6 +38,10 @@ window.editor = () => ({
       spellChecker: false,
       initialValue: Alpine.raw(this.body),
       placeholder: "Start writing…",
+    });
+
+    this.editor.codemirror.on("change", () => {
+      this.body = this.editor.value();
     });
 
     initCommandHandler({
@@ -81,24 +86,28 @@ window.editor = () => ({
     return _path.slice(_path.length - 1, _path.length);
   },
 
-  getBody() {
-    return this.editor.value();
+  updateAttributes() {
+    const attributes = getKvData(
+      document.getElementById("editor-form"),
+      "attributes",
+    );
+
+    this.attributes = {
+      title: this.attributes.title,
+      ...attributes,
+    };
   },
 
-  getAttributes() {
-    const data = new FormData(this.$root);
-    const keys = data.getAll("attributes[key][]");
-    const values = data.getAll("attributes[value][]");
+  attributesEntries() {
+    return Object.entries(this.attributes).sort(([keyA], [keyB]) =>
+      keyA === "" || keyB === "" ? 1 : keyA.localeCompare(keyB),
+    );
+  },
 
-    const attributes = keys.reduce((keyValues, key, index) => {
-      keyValues[key] = values[index];
-
-      return keyValues;
-    }, {});
-
-    return {
-      ...attributes,
-      title: this.attributes.title,
+  addAttribute() {
+    this.attributes = {
+      ...this.attributes,
+      "": "",
     };
   },
 
@@ -145,7 +154,17 @@ window.editor = () => ({
   },
 
   async putContents() {
-    const content = `---\n${stringify(this.getAttributes()).trim()}\n---\n${this.getBody().trim()}`;
+    const attributes = Alpine.raw(this.attributes);
+    const body = Alpine.raw(this.body);
+
+    const content = [
+      Object.entries(attributes).length > 0
+        ? `---\n${stringify(attributes).trim()}\n---`
+        : null,
+      body.length > 0 ? `${body.trim()}` : null,
+    ]
+      .filter((item) => item !== null)
+      .join("\n");
 
     return (
       await auth.request("PUT /repos/{owner}/{repo}/contents/{path}", {
