@@ -22,6 +22,12 @@ full: true
         </div>
 
         <div class="header-buttons header-buttons-end">
+            <a
+                href="reprose:delete"
+                class="button"
+                x-html="`${icons.trash} <span class='hidden lg:block'>Delete</span>`"
+                x-show="!loading && !isNotExists()"
+            ></a>
             <button
                 class="button button-primary"
                 x-html="saving ? icons.spinner : `${icons.save} <span class='hidden lg:block'>Save</span>`"

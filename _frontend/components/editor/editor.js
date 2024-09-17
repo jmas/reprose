@@ -28,7 +28,7 @@ window.editor = () => ({
 
     this.config = await auth.config(this.owner, this.getRepo());
 
-    this.filename = this.getFilename();
+    this.filename = this.getFilenameFromPath();
 
     if (this.path) {
       await this.load();
@@ -60,12 +60,43 @@ window.editor = () => ({
             path: params.get("path"),
           })}`;
         },
+
+        delete: () => {
+          this.delete();
+        },
       },
     });
   },
 
   destroy() {
     this.editor.toTextArea();
+  },
+
+  async delete() {
+    if (this.isNotExists()) {
+      alert(`Can't delete file because it doesn't exists`);
+      return;
+    }
+
+    if (
+      confirm(
+        `You are about to delete ${this.getFilenameFromPath()}. Are you sure?`,
+      )
+    ) {
+      this.loading = true;
+
+      await auth.deleteContents(
+        this.owner,
+        this.getRepo(),
+        this.getPath(true),
+        `Delete \`${this.getFilenameFromPath()}\` via Reprose`,
+        this.sha,
+      );
+
+      this.loading = false;
+
+      location.href = "/finder";
+    }
   },
 
   getPathFromLocation() {
@@ -77,14 +108,35 @@ window.editor = () => ({
     return _path[0] ?? null;
   },
 
-  getPathWithoutRepo() {
-    const _path = this.path.split("/");
-    return _path.slice(1).join("/");
+  getPath(withoutRepo = false, withoutFile = false) {
+    let _path = this.path.split("/").filter((segment) => segment.trim() !== "");
+
+    if (withoutRepo) {
+      _path = _path.slice(1);
+    }
+
+    if (withoutFile) {
+      _path = _path.slice(0, -1);
+    }
+
+    return _path.join("/");
   },
 
-  getFilename() {
+  getFilenameFromPath() {
+    if (!this.isPathWithFile()) {
+      return null;
+    }
+
     const _path = this.path.split("/");
     return _path.slice(_path.length - 1, _path.length);
+  },
+
+  isPathWithFile() {
+    return !this.path.endsWith("/");
+  },
+
+  isNotExists() {
+    return this.sha === null;
   },
 
   updateAttributes() {
@@ -121,11 +173,11 @@ window.editor = () => ({
   async load() {
     this.loading = true;
 
-    if (!this.path.endsWith("/")) {
+    if (this.isPathWithFile()) {
       const { content, sha } = await auth.fetchContents(
         this.owner,
         this.getRepo(),
-        this.getPathWithoutRepo(),
+        this.getPath(true),
       );
 
       const { attributes, body } = fm(decode(content));
@@ -160,18 +212,35 @@ window.editor = () => ({
       .filter((item) => item !== null)
       .join("\n");
 
+    const path = [
+      this.getPath(true, this.isPathWithFile()),
+      this.filename,
+    ].join("/");
+
     const {
-      content: { sha },
+      content: { sha, name, path: _path },
     } = await auth.putContents(
       this.owner,
       this.getRepo(),
-      this.getPathWithoutRepo(),
+      path,
+      `${this.isNotExists() ? "Create" : "Update"} \`${this.filename}\` via Reprose`,
       encode(content),
-      `Update ${this.getFilename()} via Reprose`,
       this.sha,
     );
 
+    if (this.isNotExists() && this.getFilenameFromPath() !== this.filename) {
+      await auth.deleteContents(
+        this.owner,
+        this.getRepo(),
+        this.getPath(true),
+        `[skip ci] Delete \`${this.getFilenameFromPath()}\` because name of file was changed to \`${this.filename}\` via Reprose`,
+        this.sha,
+      );
+    }
+
     this.sha = sha;
+    this.filename = name;
+    this.path = [this.getRepo(), _path].join("/");
 
     this.saving = false;
   },

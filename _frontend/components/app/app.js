@@ -1,10 +1,6 @@
 window.app = () => {
   return {
-    init() {
-      window.addEventListener("message", (event) => {
-        console.log("message ", event.data);
-      });
-    },
+    init() {},
 
     login() {
       window.location.href = "/auth";

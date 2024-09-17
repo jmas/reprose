@@ -41,23 +41,32 @@ export default {
 
   async fetchContents(owner, repo, path) {
     return (
-      await this.request("GET /repos/{owner}/{repo}/contents/{path}", {
+      await this.request(`GET /repos/{owner}/{repo}/contents/${path}`, {
         owner,
         repo,
-        path,
       })
     ).data;
   },
 
-  async putContents(owner, repo, path, content, message, sha = undefined) {
+  async putContents(owner, repo, path, message, content, sha = undefined) {
     return (
-      await this.request("PUT /repos/{owner}/{repo}/contents/{path}", {
+      await this.request(`PUT /repos/{owner}/{repo}/contents/${path}`, {
         owner,
         repo,
-        path,
         message,
         sha,
         content,
+      })
+    ).data;
+  },
+
+  async deleteContents(owner, repo, path, message, sha) {
+    return (
+      await this.request(`DELETE /repos/{owner}/{repo}/contents/${path}`, {
+        owner,
+        repo,
+        message,
+        sha,
       })
     ).data;
   },
@@ -69,9 +78,7 @@ export default {
       content = decode(
         (await this.fetchContents(owner, repo, ".reproserc.yaml")).content,
       );
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
 
     return configFns(content);
   },
