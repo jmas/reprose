@@ -12,15 +12,15 @@ The editor can be deployed to GitHub Pages or Cloudflare Pages. The latter is pr
 
 The original idea for the editor was inspired by [Prose.io editor](https://prose.io). The reason I don’t use Prose.io is that its image uploader is broken, and its code is based on BackboneJS, which is outdated. I built Reprose with Jekyll and AlpineJS. Both are super simple, and any developer can easily understand what’s happening in this codebase. ;)
 
-**Screenshot of finder page:**
+**Screenshot of Finder:**
 
 ![Reprose editor page](https://github.com/jmas/reprose/blob/main/.assets/reprose-finder-screenshot.png?raw=true)
 
-**Screenshot of editor page:**
+**Screenshot of Editor:**
 
 ![Reprose editor page](https://github.com/jmas/reprose/blob/main/.assets/reprose-editor-screenshot.png?raw=true)
 
-**Supported features:**
+**Features:**
 
 - [x] Browse markdown files via Finder
 - [x] Open markdown files in Editor
