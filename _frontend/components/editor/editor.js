@@ -28,7 +28,9 @@ window.editor = () => ({
 
     this.config = await auth.config(this.owner, this.getRepo());
 
-    this.filename = this.getFilenameFromPath();
+    this.filename =
+      this.getFilenameFromPath() ??
+      `${new Date().toISOString().split("T")[0]}.md`;
 
     if (this.path) {
       await this.load();
