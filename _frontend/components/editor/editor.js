@@ -174,17 +174,21 @@ window.editor = () => ({
     this.loading = true;
 
     if (this.isPathWithFile()) {
-      const { content, sha } = await auth.fetchContents(
-        this.owner,
-        this.getRepo(),
-        this.getPath(true),
-      );
+      try {
+        const { content, sha } = await auth.fetchContents(
+          this.owner,
+          this.getRepo(),
+          this.getPath(true),
+        );
 
-      const { attributes, body } = fm(decode(content));
+        const { attributes, body } = fm(decode(content));
 
-      this.attributes = this.config.formatAttributes(attributes);
-      this.body = body;
-      this.sha = sha;
+        this.attributes = this.config.formatAttributes(attributes);
+        this.body = body;
+        this.sha = sha;
+      } catch (error) {
+        location.href = `/editor?${new URLSearchParams({ path: `${this.getPath(false, true)}/` })}`;
+      }
     } else {
       this.attributes = this.config.getDefaultAttributes();
     }
