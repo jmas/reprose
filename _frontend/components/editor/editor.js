@@ -231,7 +231,7 @@ window.editor = () => ({
       path,
       `${this.isNotExists() ? "Create" : "Update"} \`${this.filename}\` via Reprose`,
       encode(content),
-      this.sha,
+      this.sha ?? undefined,
     );
 
     if (this.isNotExists() && this.getFilenameFromPath() !== this.filename) {
