@@ -13,7 +13,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar.fullscreen {
-    @apply px-4 h-14 border-b border-solid border-slate-200;
+    @apply px-4 h-14 border-b border-solid border-slate-200 z-40;
 }
 
 .EasyMDEContainer .editor-toolbar button {
@@ -53,26 +53,26 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-none text-inherit bg-white p-6 pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
-    font: inherit;
+    @apply w-full rounded-none text-inherit text-lg leading-7 bg-white p-6 pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
+    font-family: inherit;
 }
 
 .EasyMDEContainer .CodeMirror-lines {
     @apply pt-6;
 }
 
-.EasyMDEContainer .CodeMirror pre.CodeMirror-line {
+/* .EasyMDEContainer .CodeMirror pre.CodeMirror-line {
     @apply leading-7;
-}
+} */
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
-    @apply rounded-none top-14 border-l-0 border-r-0;
+    @apply rounded-none top-14 border-l-0 border-r-0 z-40;
 }
 
 .EasyMDEContainer
     .CodeMirror.CodeMirror-fullscreen.CodeMirror-sided
     + .editor-preview-side {
-    @apply top-14;
+    @apply top-14 z-40;
 }
 
 .EasyMDEContainer .editor-preview.editor-preview-active {
@@ -107,10 +107,7 @@
 
 .EasyMDEContainer .editor-preview.editor-preview-full {
     @apply p-6 bg-white;
-}
-
-.EasyMDEContainer .editor-preview p {
-    @apply leading-8;
+    padding-left: calc(1.5rem + 4px);
 }
 
 .EasyMDEContainer .editor-preview *:is(code, pre) {

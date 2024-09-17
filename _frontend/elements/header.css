@@ -1,5 +1,5 @@
 .header {
-    @apply bg-white py-3 px-4 flex flex-row items-center justify-between gap-4 w-full;
+    @apply bg-white py-3 px-4 flex flex-row items-center justify-between gap-4 w-full shadow-sm z-20;
 }
 
 .header.header-sticky {
