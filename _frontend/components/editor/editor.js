@@ -121,7 +121,7 @@ window.editor = () => ({
       _path = _path.slice(0, -1);
     }
 
-    return _path.join("/");
+    return _path.filter((segment) => segment.trim() !== "").join("/");
   },
 
   getFilenameFromPath() {
@@ -218,10 +218,9 @@ window.editor = () => ({
       .filter((item) => item !== null)
       .join("\n");
 
-    const path = [
-      this.getPath(true, this.isPathWithFile()),
-      this.filename,
-    ].join("/");
+    const path = [this.getPath(true, this.isPathWithFile()), this.filename]
+      .filter((segment) => segment.trim() !== "")
+      .join("/");
 
     const {
       content: { sha, name, path: _path },
@@ -246,7 +245,9 @@ window.editor = () => ({
 
     this.sha = sha;
     this.filename = name;
-    this.path = [this.getRepo(), _path].join("/");
+    this.path = [this.getRepo(), _path]
+      .filter((segment) => segment.trim() !== "")
+      .join("/");
 
     this.saving = false;
   },
