@@ -6,6 +6,7 @@ import { Alpine } from "alpinejs";
 import { init as initCommandHandler } from "../../utils/commands-handler";
 import protocol from "../../protocol";
 import { getKvData } from "../../utils/form-kvdata";
+import { cleanupPath } from "../../utils/cleanup-path";
 
 window.editor = () => ({
   editor: null,
@@ -121,7 +122,7 @@ window.editor = () => ({
       _path = _path.slice(0, -1);
     }
 
-    return _path.filter((segment) => segment.trim() !== "").join("/");
+    return cleanupPath(_path.join("/"));
   },
 
   getFilenameFromPath() {
@@ -218,9 +219,9 @@ window.editor = () => ({
       .filter((item) => item !== null)
       .join("\n");
 
-    const path = [this.getPath(true, this.isPathWithFile()), this.filename]
-      .filter((segment) => segment.trim() !== "")
-      .join("/");
+    const path = cleanupPath(
+      [this.getPath(true, this.isPathWithFile()), this.filename].join("/"),
+    );
 
     const {
       content: { sha, name, path: _path },
@@ -245,9 +246,7 @@ window.editor = () => ({
 
     this.sha = sha;
     this.filename = name;
-    this.path = [this.getRepo(), _path]
-      .filter((segment) => segment.trim() !== "")
-      .join("/");
+    this.path = cleanupPath([this.getRepo(), _path].join("/"));
 
     this.saving = false;
   },
