@@ -22,6 +22,7 @@ buttonsEnd: modal_close_button.html
                                 <button
                                     x-on:click="navigate([])"
                                     x-html="icons.repo"
+                                    class="hover:text-blue-500 transition"
                                     title="Navigate to repositories"
                                 ></button>
                             </li>
@@ -31,7 +32,7 @@ buttonsEnd: modal_close_button.html
                                 >
                                     <button
                                         x-html="`${icons.dir} <span class='text-nowrap truncate'>${item.name}</span>`"
-                                        class="flex flex-row gap-2 items-center min-w-0 font-medium"
+                                        class="flex flex-row gap-2 items-center min-w-0 font-medium hover:text-blue-500 transition"
                                         x-on:click="navigate(path.slice(0, index + 1))"
                                         title="Navigate to directory"
                                         tabindex="0"
@@ -41,7 +42,7 @@ buttonsEnd: modal_close_button.html
                         </ul>
                         <button
                             x-html="`${icons.plus} Create`"
-                            class="text-nowrap truncate flex flex-row gap-2 items-center text-blue-600 font-medium"
+                            class="text-nowrap truncate flex flex-row gap-2 items-center text-blue-600 font-medium hover:text-blue-500 transition"
                             x-on:click="select(path)"
                             tabindex="0"
                         ></button>
@@ -56,7 +57,7 @@ buttonsEnd: modal_close_button.html
                     autofocus
                 />
 
-                <ul class="flex flex-col gap-4">
+                <ul class="flex flex-col bg-white rounded-lg">
                     <template x-if="loading">
                         <li class="loading" x-html="icons.spinner"></li>
                     </template>
@@ -64,9 +65,11 @@ buttonsEnd: modal_close_button.html
                         <li class="empty">Empty</li>
                     </template>
                     <template x-for="item in _items">
-                        <li class="flex flex-row">
+                        <li
+                            class="flex flex-row border-b border-b-slate-200 last:border-none"
+                        >
                             <button
-                                class="bg-white p-4 rounded-md text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center font-medium"
+                                class="p-4 text-lg text-left min-w-0 flex flex-1 flex-row gap-3 items-center font-medium hover:text-blue-500 transition"
                                 x-on:click="select(item)"
                                 title="Select"
                                 tabindex="0"

@@ -5,7 +5,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar {
-    @apply w-full border-0 bg-slate-50 rounded-none px-4 py-3 lg:px-0 flex flex-row gap-2 items-center text-lg border-b border-solid border-slate-200;
+    @apply w-full border-0 bg-slate-50 rounded-none px-4 py-3 lg:px-0 flex flex-row gap-1 items-center text-lg border-b border-solid border-slate-200;
 }
 
 .EasyMDEContainer .editor-toolbar.disabled-for-preview button:not(.no-disable) {
@@ -17,11 +17,11 @@
 }
 
 .EasyMDEContainer .editor-toolbar button {
-    @apply border-none hover:bg-slate-200 rounded-md transition text-base;
+    @apply border-none bg-slate-50 hover:bg-white rounded-md transition text-base;
 }
 
 .EasyMDEContainer .editor-toolbar button.active {
-    @apply bg-slate-200;
+    @apply bg-white text-blue-500;
 }
 
 .EasyMDEContainer .CodeMirror:not(.CodeMirror-fullscreen) {
@@ -33,7 +33,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar button {
-    @apply flex justify-center items-center min-h-8 min-w-8 p-0 text-slate-900;
+    @apply flex justify-center items-center min-h-8 min-w-8 p-0 text-slate-900 hover:text-blue-500 transition;
 }
 
 .EasyMDEContainer .editor-toolbar i.separator:has(+ button.guide) {
@@ -53,7 +53,8 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-none text-lg bg-white p-6 pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
+    @apply w-full rounded-none text-inherit bg-white p-6 pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
+    font: inherit;
 }
 
 .EasyMDEContainer .CodeMirror-lines {

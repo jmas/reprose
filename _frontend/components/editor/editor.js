@@ -133,18 +133,23 @@ window.editor = () => ({
   },
 
   async fetchContents() {
-    const url = `GET /repos/${this.owner}/${this.getRepo()}/contents/${this.getPathWithoutRepo()}`;
-
-    return (await auth.request(url)).data;
+    return (
+      await auth.request("GET /repos/{owner}/{repo}/contents/{path}", {
+        owner: this.owner,
+        repo: this.getRepo(),
+        path: this.getPathWithoutRepo(),
+      })
+    ).data;
   },
 
   async putContents() {
-    const url = `PUT /repos/${this.owner}/${this.getRepo()}/contents/${this.getPathWithoutRepo()}`;
-
     const content = `---\n${stringify(this.getAttributes()).trim()}\n---\n${this.getBody().trim()}`;
 
     return (
-      await auth.request(url, {
+      await auth.request("PUT /repos/{owner}/{repo}/contents/{path}", {
+        owner: this.owner,
+        repo: this.getRepo(),
+        path: this.getPathWithoutRepo(),
         message: `Update ${this.getFilename()} via Reprose`,
         sha: this.sha ?? undefined,
         content: encode(content),

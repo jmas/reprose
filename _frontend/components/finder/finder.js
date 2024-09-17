@@ -82,11 +82,13 @@ window.finder = () => {
     async fetchDir() {
       const repo = this.getRepo();
       const path = this.getPathWithoutRepo();
-      const url = `GET /repos/${this.owner}/${repo}/contents/${path}`;
 
       try {
         return (
-          await auth.request(url, {
+          await auth.request("GET /repos/{owner}/{repo}/contents/{path}", {
+            owner: this.owner,
+            repo,
+            path,
             per_page: 100,
           })
         ).data
