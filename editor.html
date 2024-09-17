@@ -102,7 +102,7 @@ full: true
                             type="date"
                             name="attributes[value][]"
                             class="kvlist-input kvlist-input-value"
-                            x-bind:value="field.value"
+                            x-bind:value="String(field.value).split('T')[0]"
                             x-on:input="$dispatch('attributes-updated')"
                         ></input>
                     </template>
