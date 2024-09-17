@@ -18,6 +18,7 @@ full: true
                 href="reprose:browse"
                 class="button"
                 x-html="`${icons.open} <span class='hidden lg:block'>Open</span>`"
+                x-bind:data-disabled="loading || saving"
             ></a>
         </div>
 
