@@ -5,6 +5,7 @@ const DEFAULT_FIELDS_TYPES = [
   "text",
   "multiline",
   "datetime",
+  "date",
   "select",
   "multiselect",
 ];
