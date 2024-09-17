@@ -49,26 +49,30 @@ full: true
         </div>
     </header>
 
-    <ul x-show="settingsDisplaying" class="kvlist">
-        <template x-for="(value, key) in attributes">
-            <template x-if="key !== 'title'">
-                <li class="kvlist-item">
-                    <input
-                        type="text"
-                        name="attributes[key][]"
-                        x-bind:value="key"
-                        class="kvlist-input kvlist-item-start"
-                    />
-                    <textarea
-                        type="text"
-                        name="attributes[value][]"
-                        x-text="value"
-                        class="kvlist-input kvlist-item-end"
-                    ></textarea>
-                </li>
+    <template x-if="!loading">
+        <ul class="kvlist" x-show="settingsDisplaying">
+            <template x-for="(value, key) in attributes">
+                <template x-if="key !== 'title'">
+                    <li class="kvlist-item">
+                        <input
+                            type="text"
+                            name="attributes[key][]"
+                            x-bind:value="key"
+                            class="kvlist-input kvlist-item-start"
+                        />
+                        <textarea
+                            type="text"
+                            name="attributes[value][]"
+                            x-text="value"
+                            class="kvlist-input kvlist-item-end"
+                            x-data
+                            x-autosize
+                        ></textarea>
+                    </li>
+                </template>
             </template>
-        </template>
-    </ul>
+        </ul>
+    </template>
 
     <div x-show="loading" class="loading" x-html="icons.spinner"></div>
 

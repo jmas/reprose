@@ -17,11 +17,11 @@
 }
 
 .EasyMDEContainer .editor-toolbar button {
-    @apply bg-slate-50 hover:bg-slate-50 hover:border-slate-200 rounded-md transition text-base;
+    @apply bg-slate-50 hover:bg-slate-100 hover:border-slate-200 rounded-md transition text-base;
 }
 
 .EasyMDEContainer .editor-toolbar button.active {
-    @apply bg-white text-blue-500 border-slate-200;
+    @apply bg-white border-slate-200;
 }
 
 .EasyMDEContainer .CodeMirror:not(.CodeMirror-fullscreen) {

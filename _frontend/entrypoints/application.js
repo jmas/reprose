@@ -11,6 +11,7 @@ import {
 } from "../utils/modal";
 import { init as initClicksRetransmitter } from "../utils/clicks-retransmitter";
 import protocol from "../protocol";
+import Autosize from "@marcreichel/alpine-autosize";
 
 window.icons = icons;
 window.auth = auth;
@@ -22,4 +23,5 @@ initClicksRetransmitter({
   protocols: [protocol, modalProtocol],
 });
 
+Alpine.plugin(Autosize);
 Alpine.start();

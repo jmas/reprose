@@ -11,11 +11,11 @@
 }
 
 .kvlist-input {
-    @apply basis-2/6 py-3 px-4 outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
+    @apply basis-2/6 py-3 px-4 min-h-12 outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
 }
 
 .kvlist-input.kvlist-item-start {
-    @apply basis-2/6 bg-slate-50 bg-opacity-75 hover:bg-slate-100 focus:bg-slate-100;
+    @apply basis-2/6 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100;
 }
 
 .kvlist-input.kvlist-item-end {
