@@ -24,9 +24,9 @@ textarea.kvlist-input {
 }
 
 .kvlist-input.kvlist-input-value {
-    @apply basis-4/6;
+    @apply basis-4/6 h-12;
 }
 
 .kvlist-add {
-    @apply w-full bg-slate-50 min-h-12 flex flex-row gap-2 items-center justify-center;
+    @apply w-full bg-slate-50 min-h-12 flex flex-row gap-2 items-center justify-center hover:bg-slate-100;
 }
