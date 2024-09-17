@@ -22,14 +22,14 @@ The original idea for the editor was inspired by [Prose.io editor](https://prose
 
 **Supported features:**
 
-[+] Browse markdown files via Finder
-[+] Open markdown files in Editor
-[+] Create a new markdown file
-[+] Preview editing markdown file in split view
-[+] Editor buttons that insert popular markdown markup
-[+] View and edit Front-matter markup
-[+] Add into repository configuration file [`.reprosers.yaml`](https://github.com/jmas/dev-blog/blob/main/.reproserc.yaml) that describe Front-matter fields and values for them
-[+] Setup next types of Front-matter fields: `text`, `multiline`, `select`, `multiselect`, `datetime`
-[+] Delete file from repository
+- [+] Browse markdown files via Finder
+- [+] Open markdown files in Editor
+- [+] Create a new markdown file
+- [+] Preview editing markdown file in split view
+- [+] Editor buttons that insert popular markdown markup
+- [+] View and edit Front-matter markup
+- [+] Add into repository configuration file [`.reprosers.yaml`](https://github.com/jmas/dev-blog/blob/main/.reproserc.yaml) that describe Front-matter fields and values for them
+- [+] Setup next types of Front-matter fields: `text`, `multiline`, `select`, `multiselect`, `datetime`
+- [+] Delete file from repository
 
 Thanks for using this wonderful editor. :)
