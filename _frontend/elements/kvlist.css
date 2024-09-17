@@ -3,7 +3,7 @@
 }
 
 .kvlist-item {
-    @apply w-full flex flex-row items-stretch border-b border-b-slate-200;
+    @apply w-full flex flex-row items-stretch border-b border-b-slate-200 last:border-b-0;
 }
 
 .kvlist-item:has(+ template:last-child),

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Edit
+title: Editing the file
 header: false
 full: true
 ---
@@ -21,59 +21,56 @@ full: true
             ></a>
         </div>
 
-        <div class="header-title">
-            <div class="w-full flex flex-row max-w-screen-lg">
-                <input
-                    type="text"
-                    class="flex-1 w-full p-2 text-2xl font-bold rounded-md outline-none transition hover:bg-slate-100 focus:bg-slate-100"
-                    placeholder="Title"
-                    x-model="attributes.title"
-                    x-bind:disabled="loading"
-                />
-            </div>
-        </div>
-
         <div class="header-buttons header-buttons-end">
-            <button
-                type="button"
-                class="button"
-                x-html="icons.gear"
-                x-on:click="toggleSettings"
-                title="Settings"
-                x-bind:disabled="loading"
-            ></button>
-
             <button
                 class="button button-primary"
                 x-html="saving ? icons.spinner : `${icons.save} <span class='hidden lg:block'>Save</span>`"
+                x-bind:disabled="loading || saving"
                 title="Save"
             ></button>
         </div>
     </header>
 
     <template x-if="!loading">
-        <ul class="kvlist" x-show="settingsDisplaying">
+        <ul class="kvlist">
+            <li class="kvlist-item">
+                <input
+                    type="text"
+                    class="kvlist-input kvlist-input-key"
+                    value="filename"
+                    readonly
+                />
+                <input
+                    type="text"
+                    name="filename"
+                    x-bind:value="getFilename"
+                    class="kvlist-input kvlist-input-value"
+                />
+            </li>
+        </ul>
+    </template>
+
+    <template x-if="!loading">
+        <ul class="kvlist">
             <template x-for="attribute in attributesEntries">
-                <template x-if="attribute[0] !== 'title'">
-                    <li class="kvlist-item">
-                        <input
-                            type="text"
-                            name="attributes[key][]"
-                            class="kvlist-input kvlist-input-key"
-                            x-bind:value="attribute[0]"
-                            x-on:change="$dispatch('attributes-updated')"
-                        />
-                        <textarea
-                            type="text"
-                            name="attributes[value][]"
-                            class="kvlist-input kvlist-input-value"
-                            x-text="attribute[1]"
-                            x-data
-                            x-autosize
-                            x-on:input="$dispatch('attributes-updated')"
-                        ></textarea>
-                    </li>
-                </template>
+                <li class="kvlist-item">
+                    <input
+                        type="text"
+                        name="attributes[key][]"
+                        class="kvlist-input kvlist-input-key"
+                        x-bind:value="attribute[0]"
+                        x-on:change="$dispatch('attributes-updated')"
+                    />
+                    <textarea
+                        type="text"
+                        name="attributes[value][]"
+                        class="kvlist-input kvlist-input-value"
+                        x-text="attribute[1]"
+                        x-data
+                        x-autosize
+                        x-on:input="$dispatch('attributes-updated')"
+                    ></textarea>
+                </li>
             </template>
             <li class="kvlist-item">
                 <button
@@ -86,11 +83,12 @@ full: true
         </ul>
     </template>
 
-    <div x-show="loading" class="loading" x-html="icons.spinner"></div>
+    <template x-if="!loading">
+        <textarea
+            x-ref="input"
+            class="bg-transparent resize-none pointer-events-none"
+        ></textarea>
+    </template>
 
-    <textarea
-        x-ref="input"
-        class="bg-transparent resize-none pointer-events-none"
-        x-hide="loading"
-    ></textarea>
+    <div x-show="loading" class="loading" x-html="icons.spinner"></div>
 </form>

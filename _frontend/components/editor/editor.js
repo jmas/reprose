@@ -5,7 +5,6 @@ import { stringify } from "yaml";
 import { Alpine } from "alpinejs";
 import { init as initCommandHandler } from "../../utils/commands-handler";
 import protocol from "../../protocol";
-import { get, put } from "../../utils/localstorage";
 import { getKvData } from "../../utils/form-kvdata";
 
 window.editor = () => ({
@@ -13,9 +12,8 @@ window.editor = () => ({
   owner: null,
   path: null,
   sha: null,
-  settingsDisplaying: get("settingsDisplaying", false),
   saving: false,
-  loading: false,
+  loading: true,
   attributes: {
     title: "",
     description: "",
@@ -87,20 +85,33 @@ window.editor = () => ({
   },
 
   updateAttributes() {
-    const attributes = getKvData(
-      document.getElementById("editor-form"),
-      "attributes",
-    );
+    const attributes = getKvData(this.$root, "attributes");
 
     this.attributes = {
       title: this.attributes.title,
       ...attributes,
     };
+
+    this.updateAutosize();
+  },
+
+  updateAutosize() {
+    requestAnimationFrame(() => {
+      Array.from(this.$root.querySelectorAll("[x-autosize]")).forEach(
+        (element) => {
+          element.dispatchEvent(new CustomEvent("autosize"));
+        },
+      );
+    });
   },
 
   attributesEntries() {
     return Object.entries(this.attributes).sort(([keyA], [keyB]) =>
-      keyA === "" || keyB === "" ? 1 : keyA.localeCompare(keyB),
+      keyA !== "" && keyB === ""
+        ? -1
+        : keyA === "" && keyB !== ""
+          ? 1
+          : keyA.localeCompare(keyB),
     );
   },
 
@@ -111,15 +122,15 @@ window.editor = () => ({
     };
   },
 
-  toggleSettings() {
-    this.settingsDisplaying = !this.settingsDisplaying;
-    put("settingsDisplaying", this.settingsDisplaying);
-  },
-
   async load() {
     this.loading = true;
 
-    const { content, sha } = await this.fetchContents();
+    const { content, sha } = await auth.fetchContents(
+      this.owner,
+      this.getRepo(),
+      this.getPathWithoutRepo(),
+    );
+
     const { attributes, body } = fm(decode(content));
 
     this.attributes = {
@@ -135,26 +146,15 @@ window.editor = () => ({
   async save() {
     this.saving = true;
 
-    const { content } = await this.putContents();
-    const { sha } = content;
-
-    this.sha = sha;
-
-    this.saving = false;
-  },
-
-  async fetchContents() {
-    return (
-      await auth.request("GET /repos/{owner}/{repo}/contents/{path}", {
-        owner: this.owner,
-        repo: this.getRepo(),
-        path: this.getPathWithoutRepo(),
-      })
-    ).data;
-  },
-
-  async putContents() {
-    const attributes = Alpine.raw(this.attributes);
+    const attributes = Object.entries(Alpine.raw(this.attributes))
+      .filter(
+        ([key, value]) =>
+          String(key).trim() !== "" && String(value).trim() !== "",
+      )
+      .reduce((attributes, [key, value]) => {
+        attributes[key] = value;
+        return attributes;
+      }, {});
     const body = Alpine.raw(this.body);
 
     const content = [
@@ -166,15 +166,19 @@ window.editor = () => ({
       .filter((item) => item !== null)
       .join("\n");
 
-    return (
-      await auth.request("PUT /repos/{owner}/{repo}/contents/{path}", {
-        owner: this.owner,
-        repo: this.getRepo(),
-        path: this.getPathWithoutRepo(),
-        message: `Update ${this.getFilename()} via Reprose`,
-        sha: this.sha ?? undefined,
-        content: encode(content),
-      })
-    ).data;
+    const {
+      content: { sha },
+    } = await auth.putContents(
+      this.owner,
+      this.getRepo(),
+      this.getPathWithoutRepo(),
+      encode(content),
+      `Update ${this.getFilename()} via Reprose`,
+      this.sha,
+    );
+
+    this.sha = sha;
+
+    this.saving = false;
   },
 });

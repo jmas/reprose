@@ -21,3 +21,7 @@
 .header-title {
     @apply flex-1 text-lg font-bold flex flex-row justify-center items-center min-h-10;
 }
+
+.header-title-text {
+    @apply truncate;
+}

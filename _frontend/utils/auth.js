@@ -36,4 +36,27 @@ export default {
   async username() {
     return (await this.user()).login;
   },
+
+  async fetchContents(owner, repo, path) {
+    return (
+      await this.request("GET /repos/{owner}/{repo}/contents/{path}", {
+        owner,
+        repo,
+        path,
+      })
+    ).data;
+  },
+
+  async putContents(owner, repo, path, content, message, sha = undefined) {
+    return (
+      await this.request("PUT /repos/{owner}/{repo}/contents/{path}", {
+        owner,
+        repo,
+        path,
+        message,
+        sha,
+        content,
+      })
+    ).data;
+  },
 };
