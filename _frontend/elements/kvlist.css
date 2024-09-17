@@ -1,5 +1,5 @@
 .kvlist {
-    @apply w-full max-w-screen-lg flex flex-col bg-white border border-slate-200;
+    @apply w-full max-w-screen-lg flex flex-col bg-white border border-slate-200 border-l-0 border-r-0 lg:border-l lg:border-r;
 }
 
 .kvlist-item {

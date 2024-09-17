@@ -5,7 +5,7 @@
 }
 
 .EasyMDEContainer .editor-toolbar {
-    @apply w-full border border-slate-200 bg-slate-50 rounded-none p-3 flex flex-row gap-1 items-center text-lg;
+    @apply w-full border border-slate-200 bg-slate-50 rounded-none p-3 flex flex-row gap-1 items-center text-lg border-l-0 border-r-0 lg:border-l lg:border-r;
 }
 
 .EasyMDEContainer .editor-toolbar.disabled-for-preview button:not(.no-disable) {
