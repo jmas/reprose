@@ -54,12 +54,12 @@
 }
 
 .EasyMDEContainer .CodeMirror {
-    @apply w-full rounded-none text-inherit text-lg leading-7 bg-white p-6 pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
+    @apply w-full rounded-none text-inherit text-lg leading-7 bg-white p-4 pt-0 md:p-6 md:pt-0 border-0 lg:border-l lg:border-r border-solid border-slate-200;
     font-family: inherit;
 }
 
 .EasyMDEContainer .CodeMirror-lines {
-    @apply pt-6;
+    @apply pt-4 md:pt-6;
 }
 
 .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
