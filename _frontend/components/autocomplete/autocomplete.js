@@ -24,8 +24,8 @@ window.autocomplete = ({ type, values } = { type: "select", values: [] }) => {
 
         values.forEach((word) => {
           if (
-            !instance._list.some(
-              (item) => item.toLowerCase() === word.toLowerCase(),
+            instance._list.every(
+              (item) => item.toLowerCase() !== word.toLowerCase(),
             )
           ) {
             instance._list.push(word);
@@ -53,16 +53,22 @@ window.autocomplete = ({ type, values } = { type: "select", values: [] }) => {
     },
 
     initSelect(input) {
+      const inputValues = this.getInputValues(input);
+      const mergedValues = [...Alpine.raw(values), ...inputValues];
+
       return new Awesomplete(input, {
         minChars: 0,
-        list: Alpine.raw(values),
+        list: mergedValues,
       });
     },
 
     initMultiselect(input) {
+      const inputValues = this.getInputValues(input);
+      const mergedValues = [...Alpine.raw(values), ...inputValues];
+
       return new Awesomplete(input, {
         minChars: 0,
-        list: Alpine.raw(values),
+        list: mergedValues,
 
         filter: function (text, input) {
           return Awesomplete.FILTER_CONTAINS(
@@ -89,6 +95,16 @@ window.autocomplete = ({ type, values } = { type: "select", values: [] }) => {
           this.input.value = before + text + ", ";
         },
       });
+    },
+    getInputValues(input) {
+      return input.value
+        .split(",")
+        .map((word) => word.trim())
+        .filter(
+          (word) =>
+            word !== "" &&
+            values.every((item) => item.toLowerCase() !== word.toLowerCase()),
+        );
     },
   };
 };
