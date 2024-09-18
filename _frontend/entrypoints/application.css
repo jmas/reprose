@@ -2,6 +2,7 @@
 @import "../vendors/awesomplete.css";
 @import "../elements/globals.css";
 @import "../components/editor/editor.css";
+@import "../elements/main.css";
 @import "../elements/icon.css";
 @import "../elements/modal.css";
 @import "../elements/button.css";

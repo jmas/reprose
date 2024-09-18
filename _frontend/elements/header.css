@@ -7,7 +7,7 @@
 }
 
 .header-buttons {
-    @apply w-32 flex flex-row gap-2;
+    @apply w-32 flex flex-row gap-3;
 }
 
 .header-buttons.header-buttons-start {

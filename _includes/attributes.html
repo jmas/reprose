@@ -1,0 +1,78 @@
+<ul class="kvlist">
+    <template x-for="field in fields">
+        <li class="kvlist-item">
+            <input
+                type="text"
+                name="attributes[key][]"
+                class="kvlist-input kvlist-input-key"
+                x-bind:value="field.name"
+                x-on:change="$dispatch('attributes-updated')"
+            />
+            <template x-if="field.type === 'text'">
+                <input
+                    type="text"
+                    name="attributes[value][]"
+                    class="kvlist-input kvlist-input-value"
+                    x-bind:value="field.value"
+                    x-on:input="$dispatch('attributes-updated')"
+                />
+            </template>
+            <template x-if="field.type === 'multiline'">
+                <textarea
+                    name="attributes[value][]"
+                    class="kvlist-input kvlist-input-value"
+                    x-text="field.value"
+                    x-data
+                    x-autosize
+                    x-on:input="$dispatch('attributes-updated')"
+                ></textarea>
+            </template>
+            <template x-if="field.type === 'datetime'">
+                <input
+                    type="datetime-local"
+                    name="attributes[value][]"
+                    class="kvlist-input kvlist-input-value"
+                    x-bind:value="field.value"
+                    x-on:input="$dispatch('attributes-updated')"
+                ></input>
+            </template>
+            <template x-if="field.type === 'date'">
+                <input
+                    type="date"
+                    name="attributes[value][]"
+                    class="kvlist-input kvlist-input-value"
+                    x-bind:value="String(field.value).split('T')[0]"
+                    x-on:input="$dispatch('attributes-updated')"
+                ></input>
+            </template>
+            <template x-if="field.type === 'select'">
+                <input
+                    type="text"
+                    name="attributes[value][]"
+                    class="kvlist-input kvlist-input-value"
+                    x-bind:value="field.value"
+                    x-on:awesomplete-selectcomplete="$dispatch('attributes-updated')"
+                    x-data="autocomplete({ type: 'select', values: field.values })"
+                />
+            </template>
+            <template x-if="field.type === 'multiselect'">
+                <input
+                    type="text"
+                    name="attributes[value][]"
+                    class="kvlist-input kvlist-input-value"
+                    x-bind:value="field.value"
+                    x-on:awesomplete-selectcomplete="$dispatch('attributes-updated')"
+                    x-data="autocomplete({ type: 'multiselect', values: field.values })"
+                />
+            </template>
+        </li>
+    </template>
+    <li class="kvlist-item">
+        <button
+            class="kvlist-add"
+            type="button"
+            x-html="`${icons.plus} Add`"
+            x-on:click="addAttribute"
+        ></button>
+    </li>
+</ul>

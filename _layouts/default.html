@@ -7,7 +7,7 @@
 
     {%- include header.html -%}
 
-    <main class="w-full {% if page.full == nil or page.full == false %}p-6 max-w-screen-lg{% endif %}" aria-label="Content">
+    <main class="main {% if page.full %}main-full{% endif %}" aria-label="Content">
       {{ content }}
     </main>
 

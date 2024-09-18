@@ -3,7 +3,7 @@
 }
 
 .kvlist-item {
-    @apply w-full flex flex-row items-stretch border-b border-b-slate-200 last:border-b-0;
+    @apply w-full flex flex-col md:flex-row items-stretch border-b border-b-slate-200 last:border-b-0;
 }
 
 .kvlist-item:has(+ template:last-child),
@@ -12,7 +12,7 @@
 }
 
 .kvlist-input {
-    @apply basis-2/6 py-3 px-4 min-h-12 outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
+    @apply md:basis-2/6 py-3 px-4 min-h-12 bg-white rounded-none appearance-none outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
 }
 
 textarea.kvlist-input {
@@ -20,19 +20,23 @@ textarea.kvlist-input {
 }
 
 .kvlist-input.kvlist-input-key {
-    @apply basis-2/6 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100;
+    @apply md:basis-2/6 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100;
 }
 
 .kvlist-input.kvlist-input-value {
-    @apply basis-4/6 h-12;
+    @apply md:basis-4/6 h-12;
 }
 
 .kvlist-add {
-    @apply w-full bg-slate-50 min-h-12 flex flex-row gap-2 items-center justify-center hover:bg-slate-100;
+    @apply w-full bg-slate-50 min-h-12 flex flex-row gap-2 items-center justify-center font-medium hover:bg-slate-100;
 }
 
 .kvlist-item > .awesomplete {
-    @apply w-full flex flex-row items-stretch border-b border-b-slate-200 last:border-b-0 basis-4/6 h-12;
+    @apply md:basis-4/6 block w-full min-h-12 bg-white rounded-none appearance-none outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
+}
+
+.kvlist-item > .awesomplete > input {
+    @apply basis-auto;
 }
 
 .kvlist-item > .awesomplete > input {

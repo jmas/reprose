@@ -1,0 +1,11 @@
+.main {
+    @apply w-full p-4 md:p-6 max-w-screen-lg flex flex-col gap-4 md:gap-6;
+}
+
+.main > * {
+    @apply w-full;
+}
+
+.main-full {
+    @apply p-0 max-w-none;
+}
