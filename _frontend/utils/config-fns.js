@@ -29,6 +29,18 @@ export function configFns(configYaml) {
     ],
   };
 
+  function valueToString(value) {
+    if (value instanceof Date) {
+      return value.toISOString();
+    } else if (typeof value === "number") {
+      return value.toString();
+    } else if (typeof value === "array") {
+      return value.join(", ");
+    }
+
+    return value;
+  }
+
   return {
     getDefaultAttributes() {
       return data.fields.reduce((attributes, { name, defaultValue }) => {
@@ -43,7 +55,7 @@ export function configFns(configYaml) {
         return {
           ...field,
           type: DEFAULT_FIELDS_TYPES.includes(field.type) ? field.type : "text",
-          value: attributes[field.name] ?? "",
+          value: valueToString(attributes[field.name] ?? ""),
           values: data?.values?.[field.name] ?? [],
         };
       });
@@ -63,7 +75,7 @@ export function configFns(configYaml) {
             fields.push({
               name,
               type: "text",
-              value,
+              value: valueToString(value),
             });
           }
         });
@@ -99,7 +111,7 @@ export function configFns(configYaml) {
                 .join(", ");
             }
           } else {
-            attributes[name] = String(value);
+            attributes[name] = valueToString(value);
           }
 
           return attributes;
