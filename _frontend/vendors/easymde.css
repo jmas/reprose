@@ -103,7 +103,7 @@
 }
 
 .EasyMDEContainer .editor-preview.editor-preview-full {
-    @apply p-6 bg-white;
+    @apply p-4 md:p-6 bg-white;
     padding-left: calc(1.5rem + 4px);
 }
 
