@@ -6,3 +6,7 @@ body {
 body {
     @apply text-slate-900;
 }
+
+input {
+    @apply bg-white;
+}
