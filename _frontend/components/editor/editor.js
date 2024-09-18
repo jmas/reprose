@@ -279,5 +279,6 @@ window.editor = () => ({
     this.path = cleanupPath([this.getRepo(), _path].join("/"));
 
     this.saving = false;
+    this.changed = false;
   },
 });
