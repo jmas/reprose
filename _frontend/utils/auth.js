@@ -71,6 +71,15 @@ export default {
     ).data;
   },
 
+  async checkRuns(owner, repo) {
+    return (
+      await this.request("GET /repos/{owner}/{repo}/commits/main/check-runs", {
+        owner,
+        repo,
+      })
+    ).data;
+  },
+
   async config(owner, repo) {
     let content = "";
 

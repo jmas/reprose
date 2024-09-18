@@ -1,5 +1,9 @@
 .button {
-    @apply p-2 font-medium rounded-md border-2 border-none flex flex-row gap-2 justify-center items-center hover:text-blue-500 transition;
+    @apply p-2 font-medium rounded-md border-2 border-none flex flex-row text-nowrap gap-2 justify-center items-center hover:text-blue-500 transition;
+}
+
+.button > svg {
+    @apply w-6 h-6;
 }
 
 .button:is(:disabled, .button-disabled, [data-disabled]) {

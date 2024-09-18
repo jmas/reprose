@@ -26,6 +26,14 @@ full: true
 
         <div class="header-buttons header-buttons-end">
             <a
+                class="button"
+                target="_blank"
+                x-bind:href="statusUrl"
+                x-html="statusHtml"
+                x-on:click="clearStatus"
+                x-show="Boolean(status)"
+            ></a>
+            <a
                 href="reprose:delete"
                 class="button"
                 x-html="`${icons.trash} <span class='hidden lg:block'>Delete</span>`"
