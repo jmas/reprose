@@ -81,7 +81,11 @@ buttonsEnd: modal_close_button.html
                                     x-text="item.name"
                                     class="flex-1 text-nowrap truncate"
                                 ></span>
-                                <span x-html="icons.chevron"></span>
+                                <template
+                                    x-if="item.type === 'repo' || item.type === 'dir'"
+                                >
+                                    <span x-html="icons.chevron"></span>
+                                </template>
                             </button>
                         </li>
                     </template>
