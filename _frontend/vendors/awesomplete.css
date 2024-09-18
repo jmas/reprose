@@ -9,5 +9,13 @@
 }
 
 .awesomplete > ul {
-    @apply top-full z-40;
+    @apply top-full z-40 bg-white rounded-md border-slate-300 shadow-md;
+}
+
+.awesomplete > ul > li {
+    @apply px-2 hover:bg-blue-100 first:rounded-t-md last:rounded-b-md;
+}
+
+.awesomplete > ul:before {
+    @apply hidden;
 }
