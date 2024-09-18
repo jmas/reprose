@@ -29,7 +29,7 @@ full: true
                 href="reprose:delete"
                 class="button"
                 x-html="`${icons.trash} <span class='hidden lg:block'>Delete</span>`"
-                x-show="!loading && !isNotExists()"
+                x-show="!loading && isExists()"
             ></a>
             <a
                 class="button button-primary"

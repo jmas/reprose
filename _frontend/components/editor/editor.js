@@ -74,7 +74,7 @@ window.editor = () => ({
           parent.postMessage(
             `modal:open?${new URLSearchParams({
               url: `/commit?${new URLSearchParams({
-                message: `${this.isNotExists() ? "Create" : "Update"} \`${this.filename}\` via Reprose`,
+                message: `${this.isExists() ? "Update" : "Create"} \`${this.filename}\` via Reprose`,
               })}`,
               height: 400,
             })}`,
@@ -106,7 +106,7 @@ window.editor = () => ({
   },
 
   async delete() {
-    if (this.isNotExists()) {
+    if (!this.isExists()) {
       alert(`Can't delete file because it doesn't exists`);
       return;
     }
@@ -168,8 +168,8 @@ window.editor = () => ({
     return !this.path.endsWith("/");
   },
 
-  isNotExists() {
-    return this.sha === null;
+  isExists() {
+    return this.sha !== null;
   },
 
   updateAttributes() {
@@ -264,7 +264,10 @@ window.editor = () => ({
       this.sha ?? undefined,
     );
 
-    if (!this.isNotExists() && this.getFilenameFromPath() !== this.filename) {
+    if (
+      this.isExists() &&
+      this.getFilenameFromPath() !== Alpine.raw(this.filename)
+    ) {
       await auth.deleteContents(
         this.owner,
         this.getRepo(),
