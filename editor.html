@@ -9,8 +9,10 @@ full: true
     class="flex flex-col gap-6 items-center"
     id="editor-form"
     x-data="editor"
+    x-on:change="handleChange"
     x-on:submit.prevent="save"
     x-on:attributes-updated="updateAttributes"
+    x-on:beforeunload.window="handlePageClose"
 >
     <header class="header">
         <div class="header-buttons header-buttons-start">

@@ -15,6 +15,7 @@ window.editor = () => ({
   sha: null,
   saving: false,
   loading: true,
+  changed: false,
   filename: "",
   attributes: {},
   body: "",
@@ -46,6 +47,7 @@ window.editor = () => ({
 
     this.editor.codemirror.on("change", () => {
       this.body = this.editor.value();
+      this.changed = true;
     });
 
     initCommandHandler({
@@ -85,6 +87,18 @@ window.editor = () => ({
         },
       },
     });
+  },
+
+  handleChange() {
+    this.changed = true;
+  },
+
+  handlePageClose(event) {
+    event.preventDefault();
+
+    if (this.changed) {
+      return "You want to close a page that has unsaved changes. Are you sure?";
+    }
   },
 
   destroy() {
