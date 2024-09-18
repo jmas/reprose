@@ -1,8 +1,8 @@
 .modal[open] {
-    @apply w-full h-full max-w-screen-md flex flex-col rounded-lg shadow-xl;
+    @apply w-full h-full max-w-screen-md flex flex-col md:rounded-md shadow-xl;
     max-height: 80vh;
 }
 
 .modal iframe {
-    @apply w-full h-full rounded-lg;
+    @apply w-full h-full md:rounded-md;
 }
