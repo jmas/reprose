@@ -29,12 +29,13 @@ full: true
                 x-html="`${icons.trash} <span class='hidden lg:block'>Delete</span>`"
                 x-show="!loading && !isNotExists()"
             ></a>
-            <button
+            <a
                 class="button button-primary"
+                href="reprose:save"
                 x-html="saving ? icons.spinner : `${icons.save} <span class='hidden lg:block'>Save</span>`"
                 x-bind:disabled="loading || saving"
                 title="Save"
-            ></button>
+            ></a>
         </div>
     </header>
 

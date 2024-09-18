@@ -12,6 +12,7 @@
 @import "../elements/scrollbars.css";
 @import "../elements/selection.css";
 @import "../elements/kvlist.css";
+@import "../elements/toggle.css";
 
 @tailwind base;
 @tailwind components;

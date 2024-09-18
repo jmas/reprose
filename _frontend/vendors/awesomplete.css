@@ -9,11 +9,11 @@
 }
 
 .awesomplete > ul {
-    @apply top-full z-40 bg-white rounded-md border-slate-300 shadow-md;
+    @apply top-full z-40 bg-white rounded-md border-slate-300 shadow-md py-2 font-sans text-lg;
 }
 
 .awesomplete > ul > li {
-    @apply px-2 transition hover:bg-blue-100 first:rounded-t-md last:rounded-b-md;
+    @apply px-2 transition hover:bg-blue-50;
 }
 
 .awesomplete > ul:before {

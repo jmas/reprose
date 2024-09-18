@@ -67,6 +67,22 @@ window.editor = () => ({
         delete: () => {
           this.delete();
         },
+
+        save: () => {
+          parent.postMessage(
+            `modal:open?${new URLSearchParams({
+              url: `/commit?${new URLSearchParams({
+                message: `${this.isNotExists() ? "Create" : "Update"} \`${this.filename}\` via Reprose`,
+              })}`,
+              height: 400,
+            })}`,
+            "*",
+          );
+        },
+
+        commit: (params) => {
+          this.commit(params.get("message"));
+        },
       },
     });
   },
@@ -199,7 +215,7 @@ window.editor = () => ({
     this.loading = false;
   },
 
-  async save() {
+  async commit(message) {
     this.saving = true;
 
     const attributes = this.config.formatAttributes(
@@ -229,7 +245,7 @@ window.editor = () => ({
       this.owner,
       this.getRepo(),
       path,
-      `${this.isNotExists() ? "Create" : "Update"} \`${this.filename}\` via Reprose`,
+      message,
       encode(content),
       this.sha ?? undefined,
     );

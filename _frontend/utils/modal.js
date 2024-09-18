@@ -26,6 +26,10 @@ export function init(config = {}) {
           throw new Error("Missing required parameter: url");
         }
 
+        dialog.style = params.has("height")
+          ? `height: ${params.get("height")}px`
+          : "";
+
         dialog.showModal();
         frame.setAttribute("src", url);
       },

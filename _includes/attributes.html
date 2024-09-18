@@ -1,9 +1,10 @@
-<ul class="kvlist">
+<ul class="kvlist kvlist-full">
     <template x-for="field in fields">
         <li class="kvlist-item">
             <input
                 type="text"
                 name="attributes[key][]"
+                placeholder="key"
                 class="kvlist-input kvlist-input-key"
                 x-bind:value="field.name"
                 x-on:change="$dispatch('attributes-updated')"
@@ -12,6 +13,7 @@
                 <input
                     type="text"
                     name="attributes[value][]"
+                    placeholder="text"
                     class="kvlist-input kvlist-input-value"
                     x-bind:value="field.value"
                     x-on:input="$dispatch('attributes-updated')"
@@ -20,6 +22,7 @@
             <template x-if="field.type === 'multiline'">
                 <textarea
                     name="attributes[value][]"
+                    placeholder="multiline"
                     class="kvlist-input kvlist-input-value"
                     x-text="field.value"
                     x-data
@@ -31,6 +34,7 @@
                 <input
                     type="datetime-local"
                     name="attributes[value][]"
+                    placeholder="datetime"
                     class="kvlist-input kvlist-input-value"
                     x-bind:value="field.value"
                     x-on:input="$dispatch('attributes-updated')"
@@ -40,6 +44,7 @@
                 <input
                     type="date"
                     name="attributes[value][]"
+                    placeholder="date"
                     class="kvlist-input kvlist-input-value"
                     x-bind:value="String(field.value).split('T')[0]"
                     x-on:input="$dispatch('attributes-updated')"
@@ -49,6 +54,7 @@
                 <input
                     type="text"
                     name="attributes[value][]"
+                    placeholder="select"
                     class="kvlist-input kvlist-input-value"
                     x-bind:value="field.value"
                     x-on:awesomplete-selectcomplete="$dispatch('attributes-updated')"
@@ -59,6 +65,7 @@
                 <input
                     type="text"
                     name="attributes[value][]"
+                    placeholder="multiselect"
                     class="kvlist-input kvlist-input-value"
                     x-bind:value="field.value"
                     x-on:awesomplete-selectcomplete="$dispatch('attributes-updated')"

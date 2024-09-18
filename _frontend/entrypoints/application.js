@@ -4,6 +4,7 @@ import "../components/finder/finder";
 import "../components/editor/editor";
 import "../components/home/home";
 import "../components/autocomplete/autocomplete";
+import "../components/commit/commit";
 import auth from "../utils/auth";
 import icons from "../utils/icons";
 import {
