@@ -93,10 +93,10 @@ window.editor = () => ({
     this.changed = true;
   },
 
-  handlePageClose(event) {
-    event.preventDefault();
-
+  handlePageUnload(event) {
     if (this.changed) {
+      event.preventDefault();
+
       return "You want to close a page that has unsaved changes. Are you sure?";
     }
   },
