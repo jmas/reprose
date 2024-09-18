@@ -12,7 +12,7 @@
 }
 
 .kvlist-input {
-    @apply md:basis-2/6 py-3 px-4 min-h-12 bg-white rounded-none appearance-none outline-none font-mono text-base transition hover:bg-slate-100 focus:bg-slate-100;
+    @apply md:basis-2/6 py-3 px-4 min-h-12 bg-white rounded-none appearance-none outline-none font-mono text-base text-left transition hover:bg-slate-100 focus:bg-slate-100;
 }
 
 textarea.kvlist-input {
