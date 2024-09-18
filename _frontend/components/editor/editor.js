@@ -264,7 +264,7 @@ window.editor = () => ({
       this.sha ?? undefined,
     );
 
-    if (this.isNotExists() && this.getFilenameFromPath() !== this.filename) {
+    if (!this.isNotExists() && this.getFilenameFromPath() !== this.filename) {
       await auth.deleteContents(
         this.owner,
         this.getRepo(),

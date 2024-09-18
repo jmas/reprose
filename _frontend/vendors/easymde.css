@@ -180,7 +180,7 @@
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-tag {
-    @apply bg-green-50 text-green-500 py-1 font-mono text-base;
+    @apply bg-green-50 bg-opacity-60 text-green-500 py-1 font-mono text-base;
 }
 
 .EasyMDEContainer .cm-s-easymde .cm-attribute {
