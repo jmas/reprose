@@ -36,6 +36,24 @@ buttonsEnd: modal_close_button.html
                 <input type="checkbox" class="toggle" name="skip" value="1" />
             </div>
         </li>
+        <template x-if="useDeleteOld">
+            <li class="kvlist-item">
+                <input
+                    type="text"
+                    class="kvlist-input kvlist-input-key"
+                    value="Delete old file?"
+                    readonly
+                />
+                <div class="kvlist-input kvlist-input-value">
+                    <input
+                        type="checkbox"
+                        class="toggle"
+                        name="deleteOld"
+                        value="1"
+                    />
+                </div>
+            </li>
+        </template>
     </ul>
 
     <button

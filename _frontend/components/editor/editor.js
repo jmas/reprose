@@ -2,11 +2,11 @@ import auth from "../../utils/auth";
 import { decode, encode } from "js-base64";
 import fm from "front-matter";
 import { stringify } from "yaml";
-import { Alpine } from "alpinejs";
 import { init as initCommandHandler } from "../../utils/commands-handler";
 import protocol from "../../protocol";
 import { getKvData } from "../../utils/form-kvdata";
 import { cleanupPath } from "../../utils/cleanup-path";
+import { Alpine } from "alpinejs";
 
 window.editor = () => ({
   editor: null,
@@ -75,6 +75,11 @@ window.editor = () => ({
             `modal:open?${new URLSearchParams({
               url: `/commit?${new URLSearchParams({
                 message: `${this.isExists() ? "Update" : "Create"} \`${this.filename}\` via Reprose`,
+                useDeleteOld:
+                  this.isExists() &&
+                  this.getFilenameFromPath() !== Alpine.raw(this.filename)
+                    ? "1"
+                    : "0",
               })}`,
               height: 400,
             })}`,
@@ -83,7 +88,7 @@ window.editor = () => ({
         },
 
         commit: (params) => {
-          this.commit(params.get("message"));
+          this.commit(params.get("message"), params.get("deleteOld") === "1");
         },
       },
     });
@@ -161,7 +166,7 @@ window.editor = () => ({
     }
 
     const _path = this.path.split("/");
-    return _path.slice(_path.length - 1, _path.length);
+    return _path.slice(_path.length - 1, _path.length)[0];
   },
 
   isPathWithFile() {
@@ -220,7 +225,7 @@ window.editor = () => ({
         this.body = body;
         this.sha = sha;
       } catch (error) {
-        location.href = `/editor?${new URLSearchParams({ path: `${this.getPath(false, true)}/` })}`;
+        location.href = "/finder";
       }
     } else {
       this.attributes = this.config.getDefaultAttributes();
@@ -229,7 +234,7 @@ window.editor = () => ({
     this.loading = false;
   },
 
-  async commit(message) {
+  async commit(message, deleteOld) {
     this.saving = true;
 
     const attributes = this.config.formatAttributes(
@@ -264,10 +269,7 @@ window.editor = () => ({
       this.sha ?? undefined,
     );
 
-    if (
-      this.isExists() &&
-      this.getFilenameFromPath() !== Alpine.raw(this.filename)
-    ) {
+    if (deleteOld) {
       await auth.deleteContents(
         this.owner,
         this.getRepo(),
@@ -275,6 +277,12 @@ window.editor = () => ({
         `[skip ci] Delete \`${this.getFilenameFromPath()}\` because name of file was changed to \`${this.filename}\` via Reprose`,
         this.sha,
       );
+
+      requestAnimationFrame(() => {
+        location.href = `/editor?${new URLSearchParams({
+          path: cleanupPath([this.getRepo(), _path].join("/")),
+        })}`;
+      });
     }
 
     this.sha = sha;
