@@ -32,10 +32,10 @@ full: true
                 x-show="!loading && isExists()"
             ></a>
             <a
-                class="button button-primary"
                 href="reprose:save"
                 x-html="saving ? icons.spinner : `${icons.save} <span class='hidden lg:block'>Save</span>`"
-                x-bind:disabled="loading || saving"
+                x-bind:data-disabled="loading || saving"
+                x-bind:class="`button ${changed ? 'button-primary' : ''}`"
                 title="Save"
             ></a>
         </div>

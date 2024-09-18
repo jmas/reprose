@@ -2,8 +2,7 @@
     @apply p-2 font-medium rounded-md border-2 border-none flex flex-row gap-2 justify-center items-center hover:text-blue-500 transition;
 }
 
-button:is(:disabled),
-a:is(.button-disabled, [data-disabled]) {
+.button:is(:disabled, .button-disabled, [data-disabled]) {
     @apply opacity-50 pointer-events-none cursor-not-allowed;
 }
 
