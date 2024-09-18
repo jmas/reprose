@@ -2,33 +2,53 @@ import Awesomplete from "awesomplete";
 import { Alpine } from "alpinejs";
 
 window.autocomplete = ({ type, values } = { type: "select", values: [] }) => {
-  let awesomeplete = null;
+  let instance = null;
 
   return {
     init() {
       if (type === "multiselect") {
-        awesomeplete = this.initMultiselect(this.$root);
+        instance = this.initMultiselect(this.$root);
       } else {
-        awesomeplete = this.initSelect(this.$root);
+        instance = this.initSelect(this.$root);
       }
 
       this.handleFocus = this.handleFocus.bind(this);
 
       this.$root.addEventListener("focus", this.handleFocus);
+
+      this.$root.addEventListener("change", (event) => {
+        const values = event.target.value
+          .split(",")
+          .map((word) => word.trim())
+          .filter((word) => word !== "");
+
+        values.forEach((word) => {
+          if (
+            !instance._list.some(
+              (item) => item.toLowerCase() === word.toLowerCase(),
+            )
+          ) {
+            instance._list.push(word);
+          }
+        });
+
+        instance.evaluate();
+        event.target.dispatchEvent(
+          new CustomEvent("awesomplete-selectcomplete"),
+        );
+      });
     },
 
     destroy() {
       this.$root.removeEventListener(this.handleFocus);
 
-      awesomeplete.destroy();
+      instance.destroy();
     },
 
     handleFocus() {
-      console.log("handleFocus");
-
       requestAnimationFrame(() => {
-        awesomeplete.evaluate();
-        awesomeplete.open();
+        instance.evaluate();
+        instance.open();
       });
     },
 
