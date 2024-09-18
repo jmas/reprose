@@ -13,9 +13,18 @@
 }
 
 .awesomplete > ul > li {
-    @apply px-2 hover:bg-blue-100 first:rounded-t-md last:rounded-b-md;
+    @apply px-2 transition hover:bg-blue-100 first:rounded-t-md last:rounded-b-md;
 }
 
 .awesomplete > ul:before {
-    @apply hidden;
+    @apply bg-white;
+    top: calc(-0.43em - 1px);
+}
+
+.awesomplete mark {
+    @apply bg-yellow-200 transition;
+}
+
+.awesomplete li:hover mark {
+    @apply bg-yellow-300;
 }
