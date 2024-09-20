@@ -5,6 +5,8 @@ header: false
 full: true
 ---
 
+<template x-init="!auth.check() ? location.href='/' : ''"></template>
+
 <form
     class="flex flex-col gap-6 items-center"
     id="editor-form"

@@ -24,7 +24,20 @@ export default {
   },
 
   async request(...args) {
-    return await (await this.oktokit()).request(...args);
+    try {
+      return await (await this.oktokit()).request(...args);
+    } catch (error) {
+      if (error.status === 401) {
+        this.clear();
+        location.refresh();
+
+        // handle Octokit error
+        // see https://github.com/octokit/request-error.js
+      } else {
+        // handle all other errors
+        throw error;
+      }
+    }
   },
 
   check() {

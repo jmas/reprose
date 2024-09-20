@@ -4,6 +4,7 @@ buttonsEnd: modal_close_button.html
 ---
 
 <div x-data class="flex flex-col gap-4">
+    <template x-init="!auth.check() ? location.href='/' : ''"></template>
     <template x-if="auth.check()">
         <div class="flex flex-col gap-4">
             <div
