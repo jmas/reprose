@@ -3,16 +3,9 @@
 
   {%- include head.html -%}
 
-  <body class="bg-slate-50 flex flex-col items-center" x-data="app">
+  <body class="bg-slate-50 flex flex-col items-center">
 
-    {%- include header.html -%}
-
-    <main class="main {% if page.full %}main-full{% endif %}" aria-label="Content">
-      {{ content }}
-    </main>
-
-    {%- include footer.html -%}
+    {{ content }}
 
   </body>
-
 </html>
