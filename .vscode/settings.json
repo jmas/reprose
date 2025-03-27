@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  "cSpell.words": ["kbar", "refinedev", "reprose"]
 }

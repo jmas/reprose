@@ -10,12 +10,10 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
@@ -24,14 +22,9 @@ import {
   FileJson,
   FileText,
   Folder,
-  FolderPen,
   FolderUp,
   Github,
-  MoreHorizontal,
-  Pencil,
-  Plus,
   PlusIcon,
-  Trash,
 } from "lucide-react";
 
 export function AppSidebar() {
@@ -75,7 +68,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Files</SidebarGroupLabel>
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarGroupAction title="Add folder or file">
                 <Plus /> <span className="sr-only">Add folder or file</span>
@@ -89,7 +82,7 @@ export function AppSidebar() {
                 <FileText /> Add File
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
           <SidebarGroupContent>
             <SidebarMenuButton className="relative">
               <FolderUp size="1rem" />
@@ -98,7 +91,7 @@ export function AppSidebar() {
             <SidebarMenuButton className="relative">
               <Folder size="1rem" />
               <a href="#">archive</a>
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuAction>
                     <MoreHorizontal />
@@ -114,12 +107,12 @@ export function AppSidebar() {
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </SidebarMenuButton>
             <SidebarMenuButton className="relative">
               <FileText size="1rem" />
               <a href="#">post1.md</a>
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuAction>
                     <MoreHorizontal />
@@ -139,12 +132,12 @@ export function AppSidebar() {
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </SidebarMenuButton>
             <SidebarMenuButton className="relative bg-gray-100">
               <FileText size="1rem" />
               <a href="#">post2.md</a>
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuAction>
                     <MoreHorizontal />
@@ -164,12 +157,12 @@ export function AppSidebar() {
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </SidebarMenuButton>
             <SidebarMenuButton className="relative">
               <FileText size="1rem" />
               <a href="#">post3.md</a>
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuAction>
                     <MoreHorizontal />
@@ -189,13 +182,13 @@ export function AppSidebar() {
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </SidebarMenuButton>
             <SidebarMenuButton className="relative">
               <FileJson size="1rem" />
               <a href="#">.reproserc.json</a>{" "}
               <span className="text-gray-400">Settings</span>
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuAction>
                     <MoreHorizontal />
@@ -204,7 +197,7 @@ export function AppSidebar() {
                 <DropdownMenuContent side="right" align="start">
                   <DropdownMenuItem>Add settings</DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </SidebarMenuButton>
           </SidebarGroupContent>
         </SidebarGroup>
